@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import Header from './components/Header';
 import Scenarios from './components/Scenarios';
@@ -8,8 +8,33 @@ import Characters from './components/Characters';
 import Prosperity from './components/Prosperity';
 import Achievements from './components/Achievements';
 import Unlocks from './components/Unlocks';
+import GameStore from './stores/GameStore';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      game: GameStore.getGame()
+    }
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  componentWillMount() {
+    GameStore.addGameChangeListener(this.onChange);
+  }
+
+  componentWillUnmount() {
+    GameStore.removeGameChangeListener(this.onChange);
+  }
+
+  onChange() {
+    this.setState({
+      game: GameStore.getGame()
+    });
+  }
+
   render() {
     return (
       <Router>

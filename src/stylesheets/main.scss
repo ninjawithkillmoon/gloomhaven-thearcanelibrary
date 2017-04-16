@@ -1,0 +1,34 @@
+@import 'utils/all';
+@import 'components/all';
+
+/* general button styles */
+
+.btn-custom {
+	color: white;
+
+}
+
+.btn-brute, .btn-brute:hover {
+	@extend .btn-custom;
+	background-color: $colour-brute;
+}
+
+.btn-doomstalker {
+	@extend .btn-custom;
+	background-color: $colour-doomstalker;
+}
+
+.btn-cragheart {
+	@extend .btn-custom;
+	background-color: $colour-cragheart;
+}
+
+.btn-lightning {
+	@extend .btn-custom;
+	background-color: $colour-lightning;
+}
+
+.btn-scoundrel {
+	@extend .btn-custom;
+	background-color: $colour-scoundrel;
+}
