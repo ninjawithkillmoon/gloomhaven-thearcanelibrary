@@ -3,11 +3,29 @@ import GameConstants from '../constants/GameConstants';
 import { EventEmitter } from 'events';
 
 const CHANGE_GAME_EVENT = "changeGame";
+const MAX_PROSPERITY = 64;
 
-let _game = {};
+let _game = {
+  name: "John's Game",
+  prosperity: 9
+};
 
 function setGame(game) {
   _game = game;
+}
+
+function changeProsperity(amount) {
+  let newProsperity = _game.prosperity + amount;
+
+  if (newProsperity > MAX_PROSPERITY) {
+    newProsperity = MAX_PROSPERITY;
+  }
+
+  if (newProsperity < 0) {
+    newProsperity = 0;
+  }
+
+  _game.prosperity = newProsperity;
 }
 
 class GameStoreClass extends EventEmitter {
@@ -25,12 +43,7 @@ class GameStoreClass extends EventEmitter {
   }
 
   getGame() {
-    //return _game;
-
-    return {
-      name: "John's Game",
-      prosperity: 9
-    };
+    return _game;
   }
 
 }
@@ -52,6 +65,11 @@ GameStore.dispatchToken = AppDispatcher.register(action => {
 
     case GameConstants.RECEIVE_GAME_ERROR:
       alert(action.message);
+      GameStore.emitGameChange();
+      break;
+
+    case GameConstants.CHANGE_PROSPERITY:
+      changeProsperity(action.amount);
       GameStore.emitGameChange();
       break;
 

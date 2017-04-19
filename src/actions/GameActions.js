@@ -21,10 +21,10 @@ export default {
       });
   },
 
-  changeSpace: (space) => {
+  changeProsperity: (amount) => {
     AppDispatcher.dispatch({
-      actionType: GameConstants.CHANGE_SPACE,
-      space: space
+      actionType: GameConstants.CHANGE_PROSPERITY,
+      amount: amount
     });
   }
 
