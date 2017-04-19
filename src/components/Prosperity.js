@@ -151,7 +151,7 @@ class ProsperityComponent extends Component {
 						        <td>{level >= 8 && unlocked}</td>
 						      </tr>
 						      <tr>
-						        <td>064 - 078</td>
+						        <td>064 - 070</td>
 						        <td>{level >= 9 && unlocked}</td>
 						      </tr>
 						    </tbody>
