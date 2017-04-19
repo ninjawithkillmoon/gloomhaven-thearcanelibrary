@@ -25,6 +25,10 @@ function changeProsperity(amount) {
   _game.prosperity = newProsperity;
 }
 
+function changeGame(game) {
+  _game = game;
+}
+
 class GameStoreClass extends EventEmitter {
 
   emitGameChange() {
@@ -67,6 +71,11 @@ GameStore.dispatchToken = AppDispatcher.register(action => {
 
     case GameConstants.CHANGE_PROSPERITY:
       changeProsperity(action.amount);
+      GameStore.emitGameChange();
+      break;
+
+    case GameConstants.CHANGE_GAME:
+      changeGame(action.game);
       GameStore.emitGameChange();
       break;
 

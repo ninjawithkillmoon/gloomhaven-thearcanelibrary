@@ -5,5 +5,6 @@ export default keyMirror({
 	RECEIVE_GAME: null,
 	SAVE_GAME_ERROR: null,
 	SAVE_GAME: null,
-	CHANGE_PROSPERITY: null
+	CHANGE_PROSPERITY: null,
+	CHANGE_GAME: null
 });

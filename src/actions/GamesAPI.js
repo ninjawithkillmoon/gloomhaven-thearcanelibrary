@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import GameStore from '../stores/GameStore';
 
-const GAME_ID = "58f746a3c30b4325c0a23882";
+const GAME_ID = "58f76357c30b4325c0a23884";
 
 export default {
 
@@ -16,8 +16,6 @@ export default {
   },
 
   saveGame: () => {
-    console.log(GameStore.getGame());
-
     return fetch("http://localhost:3001/api/games/" + GAME_ID, {
       method: "PATCH",
       headers: {

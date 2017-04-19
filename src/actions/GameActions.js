@@ -55,6 +55,13 @@ export default {
       });
   },
 
+  changeGame: (game) => {
+    AppDispatcher.dispatch({
+      actionType: GameConstants.CHANGE_GAME,
+      game: game
+    });
+  },
+
   changeProsperity: (amount) => {
     AppDispatcher.dispatch({
       actionType: GameConstants.CHANGE_PROSPERITY,
