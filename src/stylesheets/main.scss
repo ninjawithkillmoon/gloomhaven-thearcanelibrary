@@ -5,10 +5,20 @@
 
 .btn-custom {
 	color: white;
-
+	opacity: 0.8;
 }
 
-.btn-brute, .btn-brute:hover {
+.btn-custom:hover {
+	color: white;
+	opacity: 0.9;
+}
+
+.btn-custom:focus {
+	color: white;
+	opacity: 1.0;
+}
+
+.btn-brute {
 	@extend .btn-custom;
 	background-color: $colour-brute;
 }

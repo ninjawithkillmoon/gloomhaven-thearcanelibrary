@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Table, Glyphicon, Button, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col, Table, Glyphicon, Button } from 'react-bootstrap';
 import GameStore from '../stores/GameStore';
 
 class ProsperityComponent extends Component {
@@ -91,10 +91,10 @@ class ProsperityComponent extends Component {
       			<Col xs={12} md={8} className="prosperity-checks-container">
       				<Row>
       					<Col xs={6} md={6}>
-      						<Button href="#" bsStyle="lightning" block><Glyphicon glyph="minus" /></Button>
+      						<Button href="#" className="btn-lightning" bsStyle="" block><Glyphicon glyph="minus" /></Button>
       					</Col>
       					<Col xs={6} md={6}>
-      						<Button href="#" bsStyle="scoundrel" block><Glyphicon glyph="plus" /></Button>
+      						<Button href="#" className="btn-scoundrel" bsStyle="" block><Glyphicon glyph="plus" /></Button>
       					</Col>
       				</Row>
 
