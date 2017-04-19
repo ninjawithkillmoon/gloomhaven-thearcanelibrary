@@ -17,20 +17,22 @@ class HeaderComponent extends Component {
   }
 
   render() {
+    let path = location.pathname;
+
     return (
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <span>Gloomhaven Companion</span>
+            <Link to="/">Gloomhaven Companion</Link>
           </Navbar.Brand>
         </Navbar.Header>
         <ul className="nav navbar-nav">
-          <li><Link to="/scenarios">Scenarios</Link></li>
-          <li><Link to="/party">Party</Link></li>
-          <li><Link to="/characters">Characters</Link></li>
-          <li><Link to="/prosperity">Prosperity</Link></li>
-          <li><Link to="/achievements">Achievements</Link></li>
-          <li><Link to="/unlocks">Unlocks</Link></li>
+          <li className={path.startsWith("/scenarios") && "active"}><Link to="/scenarios">Scenarios</Link></li>
+          <li className={path.startsWith("/party") && "active"}><Link to="/party">Party</Link></li>
+          <li className={path.startsWith("/characters") && "active"}><Link to="/characters">Characters</Link></li>
+          <li className={path.startsWith("/prosperity") && "active"}><Link to="/prosperity">Prosperity</Link></li>
+          <li className={path.startsWith("/achievements") && "active"}><Link to="/achievements">Achievements</Link></li>
+          <li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>
         </ul>
         
       </Navbar>
