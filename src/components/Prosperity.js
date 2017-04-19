@@ -91,10 +91,10 @@ class ProsperityComponent extends Component {
       			<Col xs={12} md={8} className="prosperity-checks-container">
       				<Row>
       					<Col xs={6} md={6}>
-      						<Button href="#" className="btn-lightning" bsStyle="" block><Glyphicon glyph="minus" /></Button>
+      						<Button href="#" className="btn-lightning" block><Glyphicon glyph="minus" /></Button>
       					</Col>
       					<Col xs={6} md={6}>
-      						<Button href="#" className="btn-scoundrel" bsStyle="" block><Glyphicon glyph="plus" /></Button>
+      						<Button href="#" className="btn-scoundrel" block><Glyphicon glyph="plus" /></Button>
       					</Col>
       				</Row>
 

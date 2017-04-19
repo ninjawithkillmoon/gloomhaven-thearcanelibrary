@@ -1,0 +1,44 @@
+/* general button styles */
+
+#root {
+	.btn-custom {
+		color: white;
+		opacity: 0.8;
+		border-width: 0px;
+	}
+
+	.btn-custom:hover {
+		color: white;
+		opacity: 0.9;
+	}
+
+	.btn-custom:focus {
+		color: white;
+		opacity: 1.0;
+	}
+
+	.btn-brute {
+		@extend .btn-custom;
+		background-color: $colour-brute;
+	}
+
+	.btn-doomstalker {
+		@extend .btn-custom;
+		background-color: $colour-doomstalker;
+	}
+
+	.btn-cragheart {
+		@extend .btn-custom;
+		background-color: $colour-cragheart;
+	}
+
+	.btn-lightning {
+		@extend .btn-custom;
+		background-color: $colour-lightning;
+	}
+
+	.btn-scoundrel {
+		@extend .btn-custom;
+		background-color: $colour-scoundrel;
+	}	
+}
