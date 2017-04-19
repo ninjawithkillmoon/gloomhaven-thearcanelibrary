@@ -58,28 +58,23 @@ class ProsperityComponent extends Component {
   	let level = this.prosperityLevel(this.state.game.prosperity);
   	let unlocked = <Glyphicon glyph="check" />
 
-  	let prospMilestoneLocked = <Glyphicon className="milestone" glyph="unchecked" />
-  	let prospMileStoneUnlocked = <Glyphicon className="milestone" glyph="check" />
-  	let prospLocked = <Glyphicon glyph="unchecked" />
-  	let prospUnlocked = <Glyphicon glyph="check" />
-
   	let prosperityChecks = [];
 
   	for (let i=1; i<=this.state.game.prosperity; i++) {
 			if ([4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) > -1) {
-				prosperityChecks.push(prospMileStoneUnlocked);
+				prosperityChecks.push(<Glyphicon className="milestone" glyph="check" key={i} />);
 			}
 			else {
-				prosperityChecks.push(prospUnlocked);	
+				prosperityChecks.push(<Glyphicon glyph="check" key={i} />);	
 			}
   	}
 
   	for (let i=this.state.game.prosperity + 1; i<=64; i++) {
 			if ([4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) > -1) {
-				prosperityChecks.push(prospMilestoneLocked);
+				prosperityChecks.push(<Glyphicon className="milestone" glyph="unchecked" key={i} />);
 			}
 			else {
-				prosperityChecks.push(prospLocked);	
+				prosperityChecks.push(<Glyphicon glyph="unchecked" key={i} />);	
 			}
   	}
 
