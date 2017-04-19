@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Button, Glyphicon } from 'react-bootstrap';
+import GameActions from '../actions/GameActions';
 
 class HeaderComponent extends Component {
 
-  newGame() {
-    
-  }
-
-  loadGame() {
-
-  }
-
   saveGame() {
-
+    GameActions.saveGame();
   }
 
   render() {
@@ -34,6 +27,10 @@ class HeaderComponent extends Component {
           <li className={path.startsWith("/achievements") && "active"}><Link to="/achievements">Achievements</Link></li>
           <li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>
         </ul>
+        <p className="navbar-btn">
+          <Button className="btn-scoundrel" onClick={this.saveGame.bind(this)}><Glyphicon glyph="cloud-upload" /> Save Game</Button>
+        </p>
+        
         
       </Navbar>
     );

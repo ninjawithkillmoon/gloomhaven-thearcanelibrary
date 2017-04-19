@@ -5,10 +5,7 @@ import { EventEmitter } from 'events';
 const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
-let _game = {
-  name: "John's Game",
-  prosperity: 9
-};
+let _game = {};
 
 function setGame(game) {
   _game = game;

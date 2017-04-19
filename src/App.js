@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import Header from './components/Header';
+import Home from './components/Home';
 import Scenarios from './components/Scenarios';
 import Party from './components/Party';
 import Characters from './components/Characters';
@@ -41,7 +42,7 @@ class App extends Component {
         <div className="content">
           <Header></Header>
 
-          <Route exact path="/" />
+          <Route exact path="/" component={Home} />
           <Route path="/scenarios" component={Scenarios}/>
           <Route path="/party" component={Party}/>
           <Route path="/characters" component={Characters}/>
