@@ -185,12 +185,16 @@ class AchievementsComponent extends Component {
         achievementButtons.push(<Col xs={12} md={6} lg={4} key={j}><Button className={buttonStyle} block onClick={this.toggleAchievementClick.bind(this, achievement)}>{achievement}</Button></Col>)
       }
 
+      let divider = null;
+      if (i < possibleAchievements.length - 1) {
+        divider = <hr />
+      }
+
       achievementHtml.push(
         <div key={i}>
           <Row>{achievementButtons}</Row>
-          <hr />
+          {divider}
         </div>
-        
       )
     }
 
