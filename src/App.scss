@@ -1,17 +1,17 @@
 @import 'stylesheets/main.scss';
 
 .content {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 @media (max-width: $breakpoint-smaller-desktop) {
   .content {
-		margin-top: 100px;
+		margin-top: 110px;
 	}
 }
 
 @media (max-width: $breakpoint-tablet) {
   .content {
-		margin-top: 345px;
+		margin-top: 355px;
 	}
 }

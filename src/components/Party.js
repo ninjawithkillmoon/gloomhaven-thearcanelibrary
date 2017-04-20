@@ -108,7 +108,6 @@ class PartyComponent extends Component {
 
     return (
       <div className="container">
-      	<h2>Party</h2>
       	<Grid>
       		<Row>
             <Col xs={12} md={4}>
@@ -145,7 +144,7 @@ class PartyComponent extends Component {
                   <Col xs={4} md={4} className="text-center">
                     <Row>
                       <Col xs={12} md={12}>
-                        Reputation
+                        <span className="reputation-header">Reputation</span>
                       </Col>
                       <Col xs={12} md={12} className="reputation-label">
                         <Label className="label-brute">{this.state.reputation || 0}</Label>
@@ -155,7 +154,7 @@ class PartyComponent extends Component {
                   <Col xs={4} md={4} className="text-center">
                     <Row>
                       <Col xs={12} md={12}>
-                        Shop Price Modifier
+                        <span className="reputation-header">Shop Price Modifier</span>
                       </Col>
                       <Col xs={12} md={12} className="reputation-label">
                         <Label className="label-brute">{shopPriceModifier}</Label>

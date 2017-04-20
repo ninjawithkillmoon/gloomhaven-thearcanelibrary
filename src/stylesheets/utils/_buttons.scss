@@ -2,9 +2,10 @@
 
 #root {
 	.btn-custom {
-		color: white;
+		color: black;
 		opacity: 0.8;
-		border-width: 0px;
+		border-width: 1px;
+		font-weight: bold;
 	}
 
 	.btn-custom:hover {
@@ -20,25 +21,30 @@
 	.btn-brute {
 		@extend .btn-custom;
 		background-color: $colour-brute;
+		border-color: $colour-brute;
 	}
 
 	.btn-doomstalker {
 		@extend .btn-custom;
 		background-color: $colour-doomstalker;
+		border-color: $colour-doomstalker;
 	}
 
 	.btn-cragheart {
 		@extend .btn-custom;
 		background-color: $colour-cragheart;
+		border-color: $colour-cragheart;
 	}
 
 	.btn-lightning {
 		@extend .btn-custom;
 		background-color: $colour-lightning;
+		border-color: $colour-lightning;
 	}
 
 	.btn-scoundrel {
 		@extend .btn-custom;
 		background-color: $colour-scoundrel;
+		border-color: $colour-scoundrel;
 	}	
 }

@@ -9,6 +9,10 @@ class HeaderComponent extends Component {
     GameActions.saveGame();
   }
 
+  loadGame() {
+    GameActions.loadGame();
+  }
+
   render() {
     let path = location.pathname;
 
@@ -28,7 +32,8 @@ class HeaderComponent extends Component {
           <li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>
         </ul>
         <p className="navbar-btn">
-          <Button className="btn-scoundrel" onClick={this.saveGame.bind(this)}><Glyphicon glyph="cloud-upload" /> Save Game</Button>
+          <Button className="btn-brute" onClick={this.loadGame.bind(this)}><Glyphicon glyph="cloud-download" /> Load</Button>
+          <Button className="btn-scoundrel" onClick={this.saveGame.bind(this)}><Glyphicon glyph="cloud-upload" /> Save</Button>
         </p>
         
         

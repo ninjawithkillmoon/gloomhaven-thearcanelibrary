@@ -89,7 +89,6 @@ class ProsperityComponent extends Component {
 
     return (
       <div className="container">
-      	<h2>Prosperity</h2>
       	<Grid>
       		<Row>
       			<Col xs={12} md={8} className="prosperity-checks-container">
