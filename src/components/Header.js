@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Navbar, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Button, Glyphicon } from 'react-bootstrap';
 import GameActions from '../actions/GameActions';
 
 class HeaderComponent extends Component {
