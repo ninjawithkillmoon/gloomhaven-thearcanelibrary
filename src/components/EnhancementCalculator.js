@@ -319,9 +319,9 @@ class EnhancementCalculatorComponent extends Component {
         let ability = playerPlusOneAbilityLines[playerPlusOneAbilityLine];
 
         playerPlusOneAbilityColumns.push(
-          <Col className="enhancement-col" key={playerPlusOneAbilityLine} xs={4} md={2}>
+          <Col className="enhancement-col" key={playerPlusOneAbilityLine} xs={6} md={2}>
             <Button block onClick={() => this.playerPlusOneAbilityClick(playerPlusOneAbilityLine)} className={this.state.playerPlusOneAbility === playerPlusOneAbilityLine && "btn-selected-light"}>
-              {ability.title} <GloomhavenIcon icon={ability.icon} width={iconWidth} />
+              {ability.title} <GloomhavenIcon icon={ability.icon} width={iconWidth} /> ({ability.cost}g)
             </Button>
           </Col>
         );
@@ -333,9 +333,9 @@ class EnhancementCalculatorComponent extends Component {
         let ability = summonPlusOneAbilityLines[summonPlusOneAbilityLine];
 
         summonPlusOneAbilityColumns.push(
-          <Col className="enhancement-col" key={summonPlusOneAbilityLine} xs={4} md={2}>
+          <Col className="enhancement-col" key={summonPlusOneAbilityLine} xs={6} md={3}>
             <Button block onClick={() => this.summonPlusOneAbilityClick(summonPlusOneAbilityLine)} className={this.state.summonPlusOneAbility === summonPlusOneAbilityLine && "btn-selected-light"}>
-              {ability.title} <GloomhavenIcon icon={ability.icon} width={iconWidth} />
+              {ability.title} <GloomhavenIcon icon={ability.icon} width={iconWidth} /> ({ability.cost}g)
             </Button>
           </Col>
         );
