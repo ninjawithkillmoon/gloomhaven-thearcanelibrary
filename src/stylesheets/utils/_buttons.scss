@@ -18,6 +18,12 @@
 		opacity: 1.0;
 	}
 
+	.btn-selected-light {
+		@extend .btn-custom;
+		background-color: #adadad;
+		border-color: #adadad;
+	}
+
 	.btn-brute {
 		@extend .btn-custom;
 		background-color: $colour-brute;
