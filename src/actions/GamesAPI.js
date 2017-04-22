@@ -6,7 +6,7 @@ const GAME_ID = "58f76357c30b4325c0a23884";
 export default {
 
   loadGame: () => {
-    return fetch("http://localhost:3001/api/games/" + GAME_ID, {
+    return fetch("http://10.1.1.83:3001/api/games/" + GAME_ID, {
       method: "GET",
       compress: false
     })
@@ -16,7 +16,7 @@ export default {
   },
 
   saveGame: () => {
-    return fetch("http://localhost:3001/api/games/" + GAME_ID, {
+    return fetch("http://10.1.1.83:3001/api/games/" + GAME_ID, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'
