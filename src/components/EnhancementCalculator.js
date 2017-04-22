@@ -96,8 +96,8 @@ class EnhancementCalculatorComponent extends Component {
       }
     }
 
-    // double BASE COST if multiple targets
-    if (this.state.multipleTargets) {
+    // double BASE COST if multiple targets (does not apply for attack hex)
+    if (this.state.multipleTargets && this.state.stickerType !== "attackHex") {
       cost = cost * 2;
     }
 
@@ -369,7 +369,7 @@ class EnhancementCalculatorComponent extends Component {
             </div>
           }
 
-          {this.showOtherOptions() && 
+          {this.showOtherOptions() && this.state.stickerType !== "attackHex" &&
             <div>
               <hr />
               {this.makeLabelRow("Ability has Multple Targets")}
