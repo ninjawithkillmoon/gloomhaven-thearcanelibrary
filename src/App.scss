@@ -12,6 +12,12 @@
 
 @media (max-width: $breakpoint-tablet) {
   .content {
-		margin-top: 355px;
+		margin-top: 60px;
+	}
+}
+
+@media (max-width: $breakpoint-tiny-phone) {
+  .content {
+		margin-top: 110px;
 	}
 }

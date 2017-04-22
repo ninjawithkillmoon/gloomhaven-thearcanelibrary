@@ -7,9 +7,9 @@ class CharactersComponent extends Component {
     super();
 
     this.state = {
-      character1: 4,
-      character2: 7,
-      character3: 2,
+      character1: 0,
+      character2: 0,
+      character3: 0,
       character4: 0
     }
   }
@@ -73,23 +73,23 @@ class CharactersComponent extends Component {
       <div className="container">
       	<Grid>
       		<Row className="scenario-level-row">
-            <Col xs={1} md={1}></Col>
+            <Col xs={0} md={1}></Col>
       			{character1Buttons}
       		</Row>
           <Row className="scenario-level-row">
-            <Col xs={1} md={1}></Col>
+            <Col xs={0} md={1}></Col>
             {character2Buttons}
           </Row>
           <Row className="scenario-level-row">
-            <Col xs={1} md={1}></Col>
+            <Col xs={0} md={1}></Col>
             {character3Buttons}
           </Row>
           <Row className="scenario-level-row">
-            <Col xs={1} md={1}></Col>
+            <Col xs={0} md={1}></Col>
             {character4Buttons}
           </Row>
           <Row>
-            <Col xs={11} md={11} className="text-center">
+            <Col xs={10} md={11} className="text-center">
               <h3>Normal scenario level</h3>
               <Label className="label-xxlarge label-brute">{this.normalScenarioLevel()}</Label>
             </Col>
