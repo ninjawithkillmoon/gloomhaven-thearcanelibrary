@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Scenarios from './components/Scenarios';
 import Party from './components/Party';
-import Characters from './components/Characters';
+import ScenarioLevel from './components/ScenarioLevel';
 import Prosperity from './components/Prosperity';
 import Achievements from './components/Achievements';
 import Unlocks from './components/Unlocks';
@@ -45,7 +45,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/scenarios" component={Scenarios}/>
           <Route path="/party" component={Party}/>
-          <Route path="/characters" component={Characters}/>
+          <Route path="/utilities/scenarioLevel" component={ScenarioLevel}/>
           <Route path="/prosperity" component={Prosperity}/>
           <Route path="/achievements" component={Achievements}/>
           <Route path="/unlocks" component={Unlocks}/>

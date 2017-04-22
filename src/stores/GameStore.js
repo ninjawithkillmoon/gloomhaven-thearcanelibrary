@@ -5,7 +5,15 @@ import { EventEmitter } from 'events';
 const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
-let _game = {};
+let _game = {
+  "name": "",
+  "prosperity": 0,
+  "partyLocation": "",
+  "partyNotes": "",
+  "partyAchievements": "",
+  "reputation": 0,
+  "globalAchievements": {}
+};
 
 function setGame(game) {
   _game = game;

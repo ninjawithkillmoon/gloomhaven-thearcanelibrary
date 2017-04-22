@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { Navbar, Button, Glyphicon } from 'react-bootstrap';
+import { Navbar, Button, Glyphicon, Nav, NavItem } from 'react-bootstrap';
 import GameActions from '../actions/GameActions';
 
 class HeaderComponent extends Component {
@@ -31,7 +31,18 @@ class HeaderComponent extends Component {
             <li className={path.startsWith("/characters") && "active"}><Link to="/characters">Characters</Link></li>
             <li className={path.startsWith("/prosperity") && "active"}><Link to="/prosperity">Prosperity</Link></li>
             <li className={path.startsWith("/achievements") && "active"}><Link to="/achievements">Achievements</Link></li>
-            <li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>
+            {/*<li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>}*/}
+            <li className={path.startsWith("/utilities") ? "active dropdown" : "dropdown"}>
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Utilities&nbsp;
+                <span className="caret"></span>
+              </a>
+              <ul className="dropdown-menu">
+                <li><Link to="/utilities/scenarioLevel">Scenario Level</Link></li>
+                <li><Link to="/utilities/enhancementCalculator">Enhancement Calculator</Link></li>
+                {/*<li role="separator" className="divider"></li>*/}
+              </ul>
+            </li>
           </ul>
           <p className="navbar-btn">
             <Button className="btn-brute" onClick={this.loadGame.bind(this)}><Glyphicon glyph="cloud-download" /> Load</Button>
