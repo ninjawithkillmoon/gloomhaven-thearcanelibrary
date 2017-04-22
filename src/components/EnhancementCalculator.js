@@ -237,7 +237,7 @@ class EnhancementCalculatorComponent extends Component {
     let previousEnhancementsColumns = [];
     let numberOfHexesColumns = [];
 
-    for (let i=2; i<=9; i++) {
+    for (let i=2; i<=13; i++) {
       numberOfHexesColumns.push(
         <Col className="enhancement-col" key={i} xs={4} md={3}>
           <Button block onClick={() => this.numberOfHexesClick(i)} className={this.state.numberOfCurrentlyTargetedHexes === i && "btn-selected-light"}>
@@ -423,20 +423,23 @@ class EnhancementCalculatorComponent extends Component {
             </div>
           }
 
-          <div>
-            <hr />
-            {this.makeLabelRow("Enhancement Cost")}
-            <Row>
-              <Col className="enhancement-col text-center" xs={12} md={12}>
-                {cost <= 0 &&
-                  <Label className="label-xxlarge label-brute">-</Label>
-                }
-                {cost > 0 &&
-                  <Label className="label-xxlarge label-brute">{cost + " gold"}</Label>
-                }
-              </Col>
-            </Row>
-          </div>
+          <hr />
+          {this.makeLabelRow("Enhancement Cost")}
+          <Row className="cost-row">
+            <Col className="enhancement-col text-center" xs={12} md={12}>
+              {cost <= 0 &&
+                <Label className="label-xxlarge label-brute">-</Label>
+              }
+              {cost > 0 &&
+                <Label className="label-xxlarge label-brute">{cost + " gold"}</Label>
+              }
+            </Col>
+          </Row>
+          <Row>
+            <Col className="enhancement-col text-center" xs={12} md={12}>
+              The total number of enhancements in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town.
+            </Col>
+          </Row>
       	</Grid>
       </div>
     );
