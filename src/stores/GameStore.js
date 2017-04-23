@@ -15,7 +15,8 @@ let _game = {
   "reputation": 0,
   "globalAchievements": {},
   "scenariosUnlocked": [],
-  "scenariosComplete": []
+  "scenariosComplete": [],
+  "treasuresUnlocked": []
 };
 
 function setGame(game) {

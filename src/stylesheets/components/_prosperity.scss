@@ -10,3 +10,15 @@
 		color: $colour-brute;
 	}
 }
+
+.prosperity-label-container {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.treasure-container, .treasure-key {
+	button {
+		margin-bottom: 10px;
+		white-space: normal;
+	}
+}
