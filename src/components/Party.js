@@ -142,8 +142,6 @@ class PartyComponent extends Component {
   }
 
   toggleAchievement(achievement) {
-    console.log(this.state.partyAchievements);
-
     let partyAchievementsCopy = this.state.partyAchievements;
 
     if (this.state.partyAchievements[achievement] === "true") {
@@ -159,7 +157,6 @@ class PartyComponent extends Component {
     this.setState({
       partyAchievements: partyAchievementsCopy
     }, function() {
-      console.log(this.state.partyAchievements);
       GameActions.changeGame(this.state);
     });
   }
