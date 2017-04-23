@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import GameStore from '../stores/GameStore';
 
-const GAME_ID = "58fc24cc779dd11ea8bde78c";
+const GAME_ID = "58fc3ad5779dd11ea8bde78d";
 
 export default {
 
@@ -16,6 +16,11 @@ export default {
   },
 
   saveGame: () => {
+    // don't allow saving unless a name has abeen specified
+    if (!GameStore.getGame().name) {
+      return;
+    }
+
     return fetch("http://10.1.1.83:3001/api/games/" + GAME_ID, {
       method: "PATCH",
       headers: {

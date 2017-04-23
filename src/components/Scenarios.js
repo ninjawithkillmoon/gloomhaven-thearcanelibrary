@@ -67,6 +67,522 @@ export const SCENARIOS = [
     globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED],
     partyAchievementsRequired: [] 
   },
+  { 
+    title: "Gloomhaven Square A",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.END_OF_THE_INVASION],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Gloomhaven Square B",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.END_OF_THE_INVASION],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Temple of the Seer",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Frozen Hollow",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Shrine of Strength",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Mountain Pass",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Lost Island",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Abandoned Sewers",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Forgotten Crypt",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_POWER_OF_ENHANCEMENT],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Necromancer's Sanctum",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_MERCHANT_FLEES],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Infernal Throne",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    // note this scenario requires special handling because the party needs EITHER ONE of these achievements as a prerequisite
+    title: "Temple of the Elements",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND, PARTY.PARTY_ACHIEVEMENTS.FOLLOWING_CLUES],
+    onlyOneAchievementRequired: true
+  },
+  { 
+    title: "Deep Ruins",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Echo Chamber",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Icecrag Ascent",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    // note this scenario requires special handling because the party needs EITHER ONE of these achievements as a prerequisite
+    title: "Ancient Cistern",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.WATER_BREATHING],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THROUGH_THE_RUINS],
+    onlyOneAchievementRequired: true 
+  },
+  { 
+    title: "Ruinous Rift",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.ARTIFACT_LOST],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.STONEBREAKERS_CENSER] 
+  },
+  { 
+    title: "Outer Ritual Chamber",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.DARK_BOUNTY] 
+  },
+  { 
+    title: "Sanctuary of Gloom",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.AN_INVITATION] 
+  },
+  { 
+    title: "Shrine of the Depths",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND] 
+  },
+  { 
+    title: "Plane of Night",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_POWER_OF_ENHANCEMENT, ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.ARTIFACT_RECOVERED],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Decrepit Wood",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND] 
+  },
+  { 
+    // note this scenario requires special handling because the party needs EITHER ONE of these achievements as a prerequisite
+    title: "Savvas Armory",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND, PARTY.PARTY_ACHIEVEMENTS.THE_DRAKES_COMMAND],
+    onlyOneAchievementRequired: true
+  },
+  { 
+    title: "Scorched Summit",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_DRAKES_COMMAND] 
+  },
+  { 
+    title: "Gloomhaven Battlements A",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND] 
+  },
+  { 
+    title: "Gloomhaven Battlements B",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND] 
+  },
+  { 
+    title: "Doom Trench",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.WATER_BREATHING],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Slave Pens",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Treacherous Divide",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Ancient Defense Network",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND, PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_TREASURE] 
+  },
+  { 
+    title: "Timeworn Tomb",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND] 
+  },
+  { 
+    title: "Realm of the Voice",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_SCEPTER_AND_THE_VOICE] 
+  },
+  { 
+    title: "Drake Nest",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_POWER_OF_ENHANCEMENT],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Tribal Assault",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.REDTHORNS_AID] 
+  },
+  { 
+    title: "Rebel Swamp",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Nightmare Peak",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.ACROSS_THE_DIVIDE] 
+  },
+  { 
+    title: "Lair of the Unseeing Eye",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THROUGH_THE_TRENCH] 
+  },
+  { 
+    title: "Shadow Weald",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.REDTHORNS_AID] 
+  },
+  { 
+    title: "Rebel's Stand",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Ghost Fortress",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.ANNIHILATION_OF_THE_ORDER],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "The Void",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_1, ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_2, ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_3],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Noxious Cellar",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Crypt Basement",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Palace of Ice",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Foggy Thicket",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Bandit's Wood",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Investigation",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Bloody Shack",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Forgotten Grove",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Alchemy Lab",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Fading Lighthouse",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Pit of Souls",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Magma Pit",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Underwater Lagoon",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.WATER_BREATHING],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Sulfur Mine",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Clockwork Cove",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Arcane Library",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Toxic Moor",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Well of the Unfortunate",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Chained Isle",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Windswept Highlands",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Oozing Grove",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Rockslide Ridge",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Merchant Ship",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.HIGH_SEA_ESCORT] 
+  },
+  { 
+    title: "Overgrown Graveyard",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.GRAVE_JOB] 
+  },
+  { 
+    title: "Harrower Mine",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Vault of Secrets",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Sacrifice Pit",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Lost Temple",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.FISHS_AID] 
+  },
+  { 
+    title: "Vigil Keep",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Temple of the Eclipse",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Burning Mountain",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Shadows Within",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.BAD_BUSINESS] 
+  },
+  { 
+    title: "Crystalline Cave",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.TREMORS] 
+  },
+  { 
+    title: "Sun Temple",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Harried Village",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Corrupted Cove",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_POISONS_SOURCE] 
+  },
+  { 
+    title: "Plane of Water",
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.WATER_BREATHING],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.WATER_STAFF] 
+  },
+  { 
+    title: "Syndicate Hideout",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.SIN_RA] 
+  },
+  { 
+    title: "Demonic Rift",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Wild Melee",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Back Alley Brawl",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.DEBT_COLLECTION] 
+  },
+  { 
+    title: "Sunken Vessel",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_MAP_TO_TREASURE] 
+  },
+  { 
+    title: "Vermling Nest",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Payment Due",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THROUGH_THE_NEST] 
+  },
 ];
 
 class ScenariosComponent extends Component {
@@ -94,47 +610,85 @@ class ScenariosComponent extends Component {
   isAllowedToDoScenario(number) {
     let scenario = SCENARIOS[number];
 
-    // does the scenario have any required global achievements?
-    if (scenario.globalAchievementsRequired.length > 0) {
-      for (let i=0; i<scenario.globalAchievementsRequired.length; i++) {
-        let requiredGlobalAchievement = scenario.globalAchievementsRequired[i];
+    if (scenario.onlyOneAchievementRequired) {
+      // there are some scenarios that require only one of their listed achievements and this is one of them
 
-        if (this.state.globalAchievements[requiredGlobalAchievement] === "true") {
-          // we have this achievement - carry on!
-        }
-        else {
-          // we do not have the required global achievement :(
-          return false;
-        }
-      }
-    }
+      // does the scenario have any required global achievements?
+      if (scenario.globalAchievementsRequired.length > 0) {
+        for (let i=0; i<scenario.globalAchievementsRequired.length; i++) {
+          let requiredGlobalAchievement = scenario.globalAchievementsRequired[i];
 
-    // does the scenario have any required global achievements that should be incomplete?
-    if (scenario.globalAchievementsRequiredIncomplete.length > 0) {
-      for (let i=0; i<scenario.globalAchievementsRequiredIncomplete.length; i++) {
-        let requiredGlobalAchievementIncomplete = scenario.globalAchievementsRequiredIncomplete[i];
-
-        if (this.state.globalAchievements[requiredGlobalAchievementIncomplete] === null) {
-          // we do not have this achievement - carry on!
-        }
-        else {
-          // we have the global achievement, so we can't do this scenario :(
-          return false;
+          if (this.state.globalAchievements[requiredGlobalAchievement] === "true") {
+            // we have this achievement, which is sufficient for us to do the scenario
+            return true;
+          }
+          else {
+            // we do not have this particular required global achievement - carry on!
+          }
         }
       }
-    }
 
-    // does the scenario have any required party achievements?
-    if (scenario.partyAchievementsRequired.length > 0) {
-      for (let i=0; i<scenario.partyAchievementsRequired.length; i++) {
-        let requiredPartyAchievement = scenario.partyAchievementsRequired[i];
+      // does the scenario have any required party achievements?
+      if (scenario.partyAchievementsRequired.length > 0) {
+        for (let i=0; i<scenario.partyAchievementsRequired.length; i++) {
+          let requiredPartyAchievement = scenario.partyAchievementsRequired[i];
 
-        if (this.state.partyAchievements[requiredPartyAchievement] === "true") {
-          // we have this achievement - carry on!
+          if (this.state.partyAchievements[requiredPartyAchievement] === "true") {
+            // we have this achievement, which is sufficient for us to do the scenario
+            return true;
+          }
+          else {
+            // we do not have this particular required party achievement - carry on!
+          }
         }
-        else {
-          // we do not have the required party achievement :(
-          return false;
+      }
+
+      // we didn't have any single one of the requirements :(
+      return false;
+    }
+    else {
+      // does the scenario have any required global achievements?
+      if (scenario.globalAchievementsRequired.length > 0) {
+        for (let i=0; i<scenario.globalAchievementsRequired.length; i++) {
+          let requiredGlobalAchievement = scenario.globalAchievementsRequired[i];
+
+          if (this.state.globalAchievements[requiredGlobalAchievement] === "true") {
+            // we have this achievement - carry on!
+          }
+          else {
+            // we do not have the required global achievement :(
+            return false;
+          }
+        }
+      }
+
+      // does the scenario have any required global achievements that should be incomplete?
+      if (scenario.globalAchievementsRequiredIncomplete.length > 0) {
+        for (let i=0; i<scenario.globalAchievementsRequiredIncomplete.length; i++) {
+          let requiredGlobalAchievementIncomplete = scenario.globalAchievementsRequiredIncomplete[i];
+
+          if (this.state.globalAchievements[requiredGlobalAchievementIncomplete] === null) {
+            // we do not have this achievement - carry on!
+          }
+          else {
+            // we have the global achievement, so we can't do this scenario :(
+            return false;
+          }
+        }
+      }
+
+      // does the scenario have any required party achievements?
+      if (scenario.partyAchievementsRequired.length > 0) {
+        for (let i=0; i<scenario.partyAchievementsRequired.length; i++) {
+          let requiredPartyAchievement = scenario.partyAchievementsRequired[i];
+
+          if (this.state.partyAchievements[requiredPartyAchievement] === "true") {
+            // we have this achievement - carry on!
+          }
+          else {
+            // we do not have the required party achievement :(
+            return false;
+          }
         }
       }
     }
@@ -153,27 +707,35 @@ class ScenariosComponent extends Component {
 
     let buttonStyle = "";
 
-    if (this.state.scenariosComplete && this.state.scenariosUnlocked) {
-      if (this.state.scenariosComplete.indexOf(number) >= 0) {
-        // scenario is complete - no need to check requirements
-        buttonStyle = "btn-scoundrel";
+    if (this.state.scenariosComplete.indexOf(number) >= 0) {
+      // scenario is complete - no need to check requirements
+      buttonStyle = "btn-scoundrel";
+    }
+    else if (this.state.scenariosUnlocked.indexOf(number) >= 0) {
+      // scenario is unlocked but we haven't done it yet - check the requirements
+      if (this.isAllowedToDoScenario(number)) {
+        // we are allowed to do this scenario
+        buttonStyle = "btn-doomstalker";
       }
-      else if (this.state.scenariosUnlocked.indexOf(number) >= 0) {
-        // scenario is unlocked but we haven't done it yet - check the requirements
-        if (this.isAllowedToDoScenario(number)) {
-          // we are allowed to do this scenario
-          buttonStyle = "btn-doomstalker";
-        }
-        else {
-          // there is a party or global achievement blocking us from doing this scenario (this could change later)
-          buttonStyle = "btn-lightning"; 
-        }
+      else {
+        // there is a party or global achievement blocking us from doing this scenario (this could change later)
+        buttonStyle = "btn-lightning"; 
       }
     }
 
+    // just save some space on mobiles by shrinking the buttons when they are showing only a number
+    let xs = 6;
+
+    // always show number, but only show scenario title if it is unlocked
+    let buttonText = number;
+    if (this.state.scenariosUnlocked.indexOf(number) >= 0) {
+      buttonText += ": " + scenario.title;
+      xs = 12;
+    }
+
     return (
-      <Col key={number} xs={12} md={4} lg={3}>
-        <Button onClick={() => this.toggleScenarioClick(number)} className={buttonStyle} block>{number}: {scenario.title}</Button>
+      <Col key={number} xs={xs} md={4} lg={3}>
+        <Button onClick={() => this.toggleScenarioClick(number)} className={buttonStyle} block>{buttonText}</Button>
       </Col>
     );
   }
