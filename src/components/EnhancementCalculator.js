@@ -105,14 +105,14 @@ class EnhancementCalculatorComponent extends Component {
 
     // double BASE COST if multiple targets (does not apply for attack hex)
     if (this.state.multipleTargets && this.state.stickerType !== "attackHex") {
-      cost = cost * 2;
+      cost *= 2;
     }
 
     // extra cost for level of ability card
-    cost = cost + levelCost[this.state.levelOfAbilityCard - 1];
+    cost += levelCost[this.state.levelOfAbilityCard - 1];
 
     // extra cost for previous enhancements to the same action
-    cost = cost + previousEnhancementCost[this.state.numberOfPreviousEnhancements];
+    cost += previousEnhancementCost[this.state.numberOfPreviousEnhancements];
 
     return cost;
   }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 import elementAir from '../../images/icons/elements/element-small-air.png';
 import elementAll from '../../images/icons/elements/element-small-all.png';
@@ -38,117 +37,52 @@ import generalTarget from '../../images/icons/general/general-small-target.png';
 import generalPlusOne from '../../images/icons/general/general-small-plus-one.png';
 
 const icons = {
-  elementFire: elementFire
+  elementAir: elementAir,
+  elementAll: elementAll,
+  elementConsume: elementConsume,
+  elementDark: elementDark,
+  elementEarth: elementEarth,
+  elementFire: elementFire,
+  elementIce: elementIce,
+  elementLight: elementLight,
+
+  statusEffectAddTarget: statusEffectAddTarget,
+  statusEffectBless: statusEffectBless,
+  statusEffectCurse: statusEffectCurse,
+  statusEffectDisarm: statusEffectDisarm,
+  statusEffectImmobilize: statusEffectImmobilize,
+  statusEffectInvisible: statusEffectInvisible,
+  statusEffectMuddle: statusEffectMuddle,
+  statusEffectPierce: statusEffectPierce,
+  statusEffectPoison: statusEffectPoison,
+  statusEffectPush: statusEffectPush,
+  statusEffectPull: statusEffectPull,
+  statusEffectStrengthen: statusEffectStrengthen,
+  statusEffectStun: statusEffectStun,
+  statusEffectWound: statusEffectWound,
+
+  generalAttack: generalAttack,
+  generalAttackHex: generalAttackHex,
+  generalHeal: generalHeal,
+  generalJump: generalJump,
+  generalLoot: generalLoot,
+  generalMove: generalMove,
+  generalRange: generalRange,
+  generalRetaliate: generalRetaliate,
+  generalShield: generalShield,
+  generalTarget: generalTarget,
+  generalPlusOne: generalPlusOne,
 };
 
 class GloomhavenIconComponent extends Component {
 
   findIcon() {
-    switch(this.props.icon) {
-      case "elementAir":
-        return elementAir;
-        break;
-      case "elementAll":
-        return elementAll;
-        break;
-      case "elementConsume":
-        return elementConsume;
-        break;
-      case "elementDark":
-        return elementDark;
-        break;
-      case "elementEarth":
-        return elementEarth;
-        break;
-      case "elementFire":
-        return elementFire;
-        break;
-      case "elementIce":
-        return elementIce;
-        break;
-      case "elementLight":
-        return elementLight;
-        break;
-      case "statusEffectAddTarget":
-        return statusEffectAddTarget;
-        break;
-      case "statusEffectBless":
-        return statusEffectBless;
-        break;
-      case "statusEffectCurse":
-        return statusEffectCurse;
-        break;
-      case "statusEffectDisarm":
-        return statusEffectDisarm;
-        break;
-      case "statusEffectImmobilize":
-        return statusEffectImmobilize;
-        break;
-      case "statusEffectInvisible":
-        return statusEffectInvisible;
-        break;
-      case "statusEffectMuddle":
-        return statusEffectMuddle;
-        break;
-      case "statusEffectPierce":
-        return statusEffectPierce;
-        break;
-      case "statusEffectPoison":
-        return statusEffectPoison;
-        break;
-      case "statusEffectPush":
-        return statusEffectPush;
-        break;
-      case "statusEffectPull":
-        return statusEffectPull;
-        break;
-      case "statusEffectStrengthen":
-        return statusEffectStrengthen;
-        break;
-      case "statusEffectStun":
-        return statusEffectStun;
-        break;
-      case "statusEffectWound":
-        return statusEffectWound;
-        break;
-      case "generalAttack":
-        return generalAttack;
-        break;
-      case "generalAttackHex":
-        return generalAttackHex;
-        break;
-      case "generalHeal":
-        return generalHeal;
-        break;
-      case "generalJump":
-        return generalJump;
-        break;
-      case "generalLoot":
-        return generalLoot;
-        break;
-      case "generalMove":
-        return generalMove;
-        break;
-      case "generalRange":
-        return generalRange;
-        break;
-      case "generalRetaliate":
-        return generalRetaliate;
-        break;
-      case "generalShield":
-        return generalShield;
-        break;
-      case "generalTarget":
-        return generalTarget;
-      case "generalPlusOne":
-        return generalPlusOne;
-        break;
-    }
+    return icons[this.props.icon];
   }
 
   render() {
     return (
-      <img src={this.findIcon()} width={this.props.width} height={this.props.height} className="gloomhaven-icon-img" />
+      <img src={this.findIcon()} width={this.props.width} alt={this.props.icon} height={this.props.height} className="gloomhaven-icon-img" />
     );
   }
 }
