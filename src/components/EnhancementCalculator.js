@@ -39,8 +39,8 @@ const baseOtherEffects = {
 };
 
 const stickerTypes = {
-  playerPlus1: { title: "Player +1" },
-  summonPlus1: { title: "Summon +1" },
+  playerPlus1: { title: "Player" },
+  summonPlus1: { title: "Summon" },
   attackHex: { title: "Attack Hex" },
   otherEffect: { title: "Other Effect" },
 };
@@ -284,6 +284,9 @@ class EnhancementCalculatorComponent extends Component {
             </span>
           )
         }
+        else {
+          icons = <GloomhavenIcon icon="generalPlusOne" width={iconWidth} />
+        }
 
         enhancementTypeColumns.push(
           <Col className="enhancement-col" key={stickerType} xs={6} md={3}>
@@ -436,7 +439,7 @@ class EnhancementCalculatorComponent extends Component {
             </Col>
           </Row>
           <Row>
-            <Col className="enhancement-col text-center" xs={12} md={12}>
+            <Col className="enhancement-col text-center instruction-bottom" xs={12} md={12}>
               The total number of enhancements in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town.
             </Col>
           </Row>

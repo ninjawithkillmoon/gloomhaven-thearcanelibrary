@@ -35,6 +35,7 @@ import generalRange from '../../images/icons/general/general-small-range.png';
 import generalRetaliate from '../../images/icons/general/general-small-retaliate.png';
 import generalShield from '../../images/icons/general/general-small-shield.png';
 import generalTarget from '../../images/icons/general/general-small-target.png';
+import generalPlusOne from '../../images/icons/general/general-small-plus-one.png';
 
 const icons = {
   elementFire: elementFire
@@ -139,6 +140,8 @@ class GloomhavenIconComponent extends Component {
         break;
       case "generalTarget":
         return generalTarget;
+      case "generalPlusOne":
+        return generalPlusOne;
         break;
     }
   }
