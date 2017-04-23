@@ -3,62 +3,64 @@ import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl, Button, Gly
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
 
-const A_DEMONS_ERRAND = "A Demon's Errand";
-const A_MAP_TO_TREASURE = "A Map to Treasure";
-const ACROSS_THE_DIVIDE = "Across the Divide";
-const AN_INVITATION = "An Invitation";
-const BAD_BUSINESS = "Bad Business";
-const DARK_BOUNTY = "Dark Bounty";
-const DEBT_COLLECTION = "Debt Collection";
-const FIRST_STEPS = "First Steps";
-const FISHS_AID = "Fish's Aid";
-const FOLLOWING_CLUES = "Following Clues";
-const GRAVE_JOB = "Grave Job";
-const HIGH_SEA_ESCORT = "High Sea Escort";
-const JEKSERAHS_PLANS = "Jekserah's Plans";
-const REDTHORNS_AID = "Redthorn's Aid";
-const SIN_RA = "Sin-Ra";
-const STONEBREAKERS_CENSER = "Stonebreaker's Censer";
-const THE_DRAKES_COMMAND = "The Drake's Command";
-const THE_DRAKES_TREASURE = "The Drake's Treasure";
-const THE_POISONS_SOURCE = "The Poison's Source";
-const THE_SCEPTER_AND_THE_VOICE = "The Scepter and the Voice";
-const THE_VOICES_COMMAND = "The Voice's Command";
-const THE_VOICES_TREASURE = "The Voice's Treasure";
-const THROUGH_THE_NEST = "Through the Nest";
-const THROUGH_THE_RUINS = "Through the Ruins";
-const THROUGH_THE_TRENCH = "Through the Trench";
-const TREMORS = "Tremors";
-const WATER_STAFF = "Water Staff";
+export const PARTY_ACHIEVEMENTS = {
+  A_DEMONS_ERRAND: "A Demon's Errand",
+  A_MAP_TO_TREASURE: "A Map to Treasure",
+  ACROSS_THE_DIVIDE: "Across the Divide",
+  AN_INVITATION: "An Invitation",
+  BAD_BUSINESS: "Bad Business",
+  DARK_BOUNTY: "Dark Bounty",
+  DEBT_COLLECTION: "Debt Collection",
+  FIRST_STEPS: "First Steps",
+  FISHS_AID: "Fish's Aid",
+  FOLLOWING_CLUES: "Following Clues",
+  GRAVE_JOB: "Grave Job",
+  HIGH_SEA_ESCORT: "High Sea Escort",
+  JEKSERAHS_PLANS: "Jekserah's Plans",
+  REDTHORNS_AID: "Redthorn's Aid",
+  SIN_RA: "Sin-Ra",
+  STONEBREAKERS_CENSER: "Stonebreaker's Censer",
+  THE_DRAKES_COMMAND: "The Drake's Command",
+  THE_DRAKES_TREASURE: "The Drake's Treasure",
+  THE_POISONS_SOURCE: "The Poison's Source",
+  THE_SCEPTER_AND_THE_VOICE: "The Scepter and the Voice",
+  THE_VOICES_COMMAND: "The Voice's Command",
+  THE_VOICES_TREASURE: "The Voice's Treasure",
+  THROUGH_THE_NEST: "Through the Nest",
+  THROUGH_THE_RUINS: "Through the Ruins",
+  THROUGH_THE_TRENCH: "Through the Trench",
+  TREMORS: "Tremors",
+  WATER_STAFF: "Water Staff",
+}
 
 const possiblePartyAchievements = [
-  A_DEMONS_ERRAND,
-  A_MAP_TO_TREASURE,
-  ACROSS_THE_DIVIDE,
-  AN_INVITATION,
-  BAD_BUSINESS,
-  DARK_BOUNTY,
-  DEBT_COLLECTION,
-  FIRST_STEPS,
-  FISHS_AID,
-  FOLLOWING_CLUES,
-  GRAVE_JOB,
-  HIGH_SEA_ESCORT,
-  JEKSERAHS_PLANS,
-  REDTHORNS_AID,
-  SIN_RA,
-  STONEBREAKERS_CENSER,
-  THE_DRAKES_COMMAND,
-  THE_DRAKES_TREASURE,
-  THE_POISONS_SOURCE,
-  THE_SCEPTER_AND_THE_VOICE,
-  THE_VOICES_COMMAND,
-  THE_VOICES_TREASURE,
-  THROUGH_THE_NEST,
-  THROUGH_THE_RUINS,
-  THROUGH_THE_TRENCH,
-  TREMORS,
-  WATER_STAFF,
+  PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND,
+  PARTY_ACHIEVEMENTS.A_MAP_TO_TREASURE,
+  PARTY_ACHIEVEMENTS.ACROSS_THE_DIVIDE,
+  PARTY_ACHIEVEMENTS.AN_INVITATION,
+  PARTY_ACHIEVEMENTS.BAD_BUSINESS,
+  PARTY_ACHIEVEMENTS.DARK_BOUNTY,
+  PARTY_ACHIEVEMENTS.DEBT_COLLECTION,
+  PARTY_ACHIEVEMENTS.FIRST_STEPS,
+  PARTY_ACHIEVEMENTS.FISHS_AID,
+  PARTY_ACHIEVEMENTS.FOLLOWING_CLUES,
+  PARTY_ACHIEVEMENTS.GRAVE_JOB,
+  PARTY_ACHIEVEMENTS.HIGH_SEA_ESCORT,
+  PARTY_ACHIEVEMENTS.JEKSERAHS_PLANS,
+  PARTY_ACHIEVEMENTS.REDTHORNS_AID,
+  PARTY_ACHIEVEMENTS.SIN_RA,
+  PARTY_ACHIEVEMENTS.STONEBREAKERS_CENSER,
+  PARTY_ACHIEVEMENTS.THE_DRAKES_COMMAND,
+  PARTY_ACHIEVEMENTS.THE_DRAKES_TREASURE,
+  PARTY_ACHIEVEMENTS.THE_POISONS_SOURCE,
+  PARTY_ACHIEVEMENTS.THE_SCEPTER_AND_THE_VOICE,
+  PARTY_ACHIEVEMENTS.THE_VOICES_COMMAND,
+  PARTY_ACHIEVEMENTS.THE_VOICES_TREASURE,
+  PARTY_ACHIEVEMENTS.THROUGH_THE_NEST,
+  PARTY_ACHIEVEMENTS.THROUGH_THE_RUINS,
+  PARTY_ACHIEVEMENTS.THROUGH_THE_TRENCH,
+  PARTY_ACHIEVEMENTS.TREMORS,
+  PARTY_ACHIEVEMENTS.WATER_STAFF,
 ];
 
 class PartyComponent extends Component {

@@ -3,79 +3,81 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
 
-const ANCIENT_TECHNOLOGY_1 = "Ancient Technology 1";
-const ANCIENT_TECHNOLOGY_2 = "Ancient Technology 2";
-const ANCIENT_TECHNOLOGY_3 = "Ancient Technology 3";
-const ANCIENT_TECHNOLOGY_4 = "Ancient Technology 4";
-const ANCIENT_TECHNOLOGY_5 = "Ancient Technology 5";
-const ANNIHILATION_OF_THE_ORDER = "Annihilation of the Order";
-const ARTIFACT_RECOVERED = "Artifact: Recovered";
-const ARTIFACT_LOST = "Artifact: Lost";
-const ARTIFACT_CLEANSED = "Artifact: Cleansed";
-const CITY_RULE_MILITARISTIC = "City Rule: Militaristic";
-const CITY_RULE_ECONOMIC = "City Rule: Economic";
-const CITY_RULE_DEMONIC = "City Rule: Demonic";
-const END_OF_THE_INVASION = "End of the Invasion";
-const END_OF_CORRUPTION_1 = "End of Corruption 1";
-const END_OF_CORRUPTION_2 = "End of Corruption 2";
-const END_OF_CORRUPTION_3 = "End of Corruption 3";
-const END_OF_GLOOM = "End of Gloom";
-const THE_DRAKE_SLAIN = "The Drake Slain";
-const THE_DRAKE_AIDED = "The Drake Aided";
-const THE_DEAD_INVADE = "The Dead Invade";
-const THE_DEMON_DETHRONED = "The Demon Dethroned";
-const THE_EDGE_OF_DARKNESS = "The Edge of Darkness";
-const THE_MERCHANT_FLEES = "The Merchant Flees";
-const THE_POWER_OF_ENHANCEMENT = "The Power of Enhancement";
-const THE_RIFT_CLOSED = "The Rift Closed";
-const THE_VOICE_SILENCED = "The Voice: Silenced";
-const THE_VOICE_FREED = "The Voice: Freed";
-const WATER_BREATHING = "Water-Breathing";
+export const GLOBAL_ACHIEVEMENTS = {
+  ANCIENT_TECHNOLOGY_1: "Ancient Technology 1",
+  ANCIENT_TECHNOLOGY_2: "Ancient Technology 2",
+  ANCIENT_TECHNOLOGY_3: "Ancient Technology 3",
+  ANCIENT_TECHNOLOGY_4: "Ancient Technology 4",
+  ANCIENT_TECHNOLOGY_5: "Ancient Technology 5",
+  ANNIHILATION_OF_THE_ORDER: "Annihilation of the Order",
+  ARTIFACT_RECOVERED: "Artifact: Recovered",
+  ARTIFACT_LOST: "Artifact: Lost",
+  ARTIFACT_CLEANSED: "Artifact: Cleansed",
+  CITY_RULE_MILITARISTIC: "City Rule: Militaristic",
+  CITY_RULE_ECONOMIC: "City Rule: Economic",
+  CITY_RULE_DEMONIC: "City Rule: Demonic",
+  END_OF_THE_INVASION: "End of the Invasion",
+  END_OF_CORRUPTION_1: "End of Corruption 1",
+  END_OF_CORRUPTION_2: "End of Corruption 2",
+  END_OF_CORRUPTION_3: "End of Corruption 3",
+  END_OF_GLOOM: "End of Gloom",
+  THE_DRAKE_SLAIN: "The Drake Slain",
+  THE_DRAKE_AIDED: "The Drake Aided",
+  THE_DEAD_INVADE: "The Dead Invade",
+  THE_DEMON_DETHRONED: "The Demon Dethroned",
+  THE_EDGE_OF_DARKNESS: "The Edge of Darkness",
+  THE_MERCHANT_FLEES: "The Merchant Flees",
+  THE_POWER_OF_ENHANCEMENT: "The Power of Enhancement",
+  THE_RIFT_CLOSED: "The Rift Closed",
+  THE_VOICE_SILENCED: "The Voice: Silenced",
+  THE_VOICE_FREED: "The Voice: Freed",
+  WATER_BREATHING: "Water-Breathing",
+};
 
 const possibleAchievements = [
   [
-    ANCIENT_TECHNOLOGY_1,
-    ANCIENT_TECHNOLOGY_2,
-    ANCIENT_TECHNOLOGY_3,
-    ANCIENT_TECHNOLOGY_4,
-    ANCIENT_TECHNOLOGY_5
+    GLOBAL_ACHIEVEMENTS.ANCIENT_TECHNOLOGY_1,
+    GLOBAL_ACHIEVEMENTS.ANCIENT_TECHNOLOGY_2,
+    GLOBAL_ACHIEVEMENTS.ANCIENT_TECHNOLOGY_3,
+    GLOBAL_ACHIEVEMENTS.ANCIENT_TECHNOLOGY_4,
+    GLOBAL_ACHIEVEMENTS.ANCIENT_TECHNOLOGY_5
   ],
   [
-    ARTIFACT_RECOVERED,
-    ARTIFACT_LOST,
-    ARTIFACT_CLEANSED,
+    GLOBAL_ACHIEVEMENTS.ARTIFACT_RECOVERED,
+    GLOBAL_ACHIEVEMENTS.ARTIFACT_LOST,
+    GLOBAL_ACHIEVEMENTS.ARTIFACT_CLEANSED,
   ],
   [
-    CITY_RULE_MILITARISTIC,
-    CITY_RULE_ECONOMIC,
-    CITY_RULE_DEMONIC,
+    GLOBAL_ACHIEVEMENTS.CITY_RULE_MILITARISTIC,
+    GLOBAL_ACHIEVEMENTS.CITY_RULE_ECONOMIC,
+    GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC,
   ],
   [
-    END_OF_CORRUPTION_1,
-    END_OF_CORRUPTION_2,
-    END_OF_CORRUPTION_3,
+    GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_1,
+    GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_2,
+    GLOBAL_ACHIEVEMENTS.END_OF_CORRUPTION_3,
   ],
   [
-    THE_DRAKE_SLAIN,
-    THE_DRAKE_AIDED,
+    GLOBAL_ACHIEVEMENTS.THE_DRAKE_SLAIN,
+    GLOBAL_ACHIEVEMENTS.THE_DRAKE_AIDED,
   ],
   [
-    THE_DEMON_DETHRONED,
-    THE_RIFT_CLOSED,
+    GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED,
+    GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED,
   ],
   [
-    THE_VOICE_SILENCED,
-    THE_VOICE_FREED,
+    GLOBAL_ACHIEVEMENTS.THE_VOICE_SILENCED,
+    GLOBAL_ACHIEVEMENTS.THE_VOICE_FREED,
   ],
   [
-    ANNIHILATION_OF_THE_ORDER,
-    END_OF_THE_INVASION,
-    END_OF_GLOOM,
-    THE_DEAD_INVADE,
-    THE_EDGE_OF_DARKNESS,
-    THE_MERCHANT_FLEES,
-    THE_POWER_OF_ENHANCEMENT,
-    WATER_BREATHING,
+    GLOBAL_ACHIEVEMENTS.ANNIHILATION_OF_THE_ORDER,
+    GLOBAL_ACHIEVEMENTS.END_OF_THE_INVASION,
+    GLOBAL_ACHIEVEMENTS.END_OF_GLOOM,
+    GLOBAL_ACHIEVEMENTS.THE_DEAD_INVADE,
+    GLOBAL_ACHIEVEMENTS.THE_EDGE_OF_DARKNESS,
+    GLOBAL_ACHIEVEMENTS.THE_MERCHANT_FLEES,
+    GLOBAL_ACHIEVEMENTS.THE_POWER_OF_ENHANCEMENT,
+    GLOBAL_ACHIEVEMENTS.WATER_BREATHING,
   ],
 ];
 
@@ -125,32 +127,32 @@ class AchievementsComponent extends Component {
     else {
       // only one artifact achievement allowed
       if (achievement.startsWith("Artifact")) {
-        globalAchievementsCopy[ARTIFACT_RECOVERED] = null;
-        globalAchievementsCopy[ARTIFACT_CLEANSED] = null;
-        globalAchievementsCopy[ARTIFACT_LOST] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_RECOVERED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_CLEANSED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_LOST] = null;
       }
 
       if (achievement.startsWith("The Drake")) {
-        globalAchievementsCopy[THE_DRAKE_AIDED] = null;
-        globalAchievementsCopy[THE_DRAKE_SLAIN] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_AIDED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_SLAIN] = null;
       }
 
       if (achievement.startsWith("City Rule")) {
-        globalAchievementsCopy[CITY_RULE_DEMONIC] = null;
-        globalAchievementsCopy[CITY_RULE_ECONOMIC] = null;
-        globalAchievementsCopy[CITY_RULE_MILITARISTIC] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_ECONOMIC] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_MILITARISTIC] = null;
       }
 
       if (achievement.startsWith("The Voice")) {
-        globalAchievementsCopy[THE_VOICE_FREED] = null;
-        globalAchievementsCopy[THE_VOICE_SILENCED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_FREED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_SILENCED] = null;
       }
 
       if (achievement.startsWith("The Demon Dethroned")) {
-        globalAchievementsCopy[THE_RIFT_CLOSED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] = null;
       }
       else if (achievement.startsWith("The Rift Closed")) {
-        globalAchievementsCopy[THE_DEMON_DETHRONED] = null;
+        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED] = null;
       }
 
       globalAchievementsCopy[achievement] = "true"

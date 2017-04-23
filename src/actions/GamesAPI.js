@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import GameStore from '../stores/GameStore';
 
-const GAME_ID = "58f76357c30b4325c0a23884";
+const GAME_ID = "58fc24cc779dd11ea8bde78c";
 
 export default {
 

@@ -5,6 +5,7 @@ import { EventEmitter } from 'events';
 const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
+// default object avoids null issues throughout app before a game is loaded
 let _game = {
   "name": "",
   "prosperity": 0,
@@ -12,7 +13,9 @@ let _game = {
   "partyNotes": "",
   "partyAchievements": "",
   "reputation": 0,
-  "globalAchievements": {}
+  "globalAchievements": {},
+  "scenariosUnlocked": [],
+  "scenariosComplete": []
 };
 
 function setGame(game) {
