@@ -278,8 +278,8 @@ class EnhancementCalculatorComponent extends Component {
         else if (stickerType === "otherEffect") {
           icons = (
             <span>
-              <GloomhavenIcon icon="elementFire" width={iconWidth} />
-              <GloomhavenIcon icon="generalJump" width={iconWidth} />
+              <GloomhavenIcon icon="elementFire" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="generalJump" width={iconWidth} />&nbsp;
               <GloomhavenIcon icon="statusEffectMuddle" width={iconWidth} />
             </span>
           )
@@ -301,16 +301,35 @@ class EnhancementCalculatorComponent extends Component {
     for (let baseOtherEffect in baseOtherEffects) {
       if (baseOtherEffects.hasOwnProperty(baseOtherEffect)) {
         let effect = baseOtherEffects[baseOtherEffect];
+        
         let xs = 6;
+        let md = 3;
         if (baseOtherEffect === "specificElement" || baseOtherEffect === "anyElement" || baseOtherEffect === "jump") {
           xs = 12;
         }
 
+        if (baseOtherEffect === "specificElement") {
+          md = 6;
+        }
+
+        let icons = <GloomhavenIcon icon={effect.icon} width={iconWidth} />
+        if (baseOtherEffect === "specificElement") {
+          icons = (
+            <span>
+              <GloomhavenIcon icon="elementAir" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="elementLight" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="elementIce" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="elementDark" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="elementFire" width={iconWidth} />&nbsp;
+              <GloomhavenIcon icon="elementEarth" width={iconWidth} />&nbsp;
+            </span>
+          )
+        }
 
         baseOtherEffectColumns.push(
-          <Col className="enhancement-col" key={baseOtherEffect} xs={xs} md={3}>
+          <Col className="enhancement-col" key={baseOtherEffect} xs={xs} md={md}>
             <Button block onClick={() => this.baseOtherEffectClick(baseOtherEffect)} className={this.state.baseOtherEffect === baseOtherEffect && "btn-selected-light"}>
-              {effect.title} <GloomhavenIcon icon={effect.icon} width={iconWidth} /> ({effect.cost}g)
+              {effect.title} {icons} ({effect.cost}g)
             </Button>
           </Col>
         );
