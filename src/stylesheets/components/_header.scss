@@ -1,3 +1,9 @@
-.navbar-btn .btn {
-	margin-left: 5px;
+.navbar-btn {
+	div {
+		display: inline;
+	}
+
+	.btn {
+		margin-left: 5px;
+	}
 }

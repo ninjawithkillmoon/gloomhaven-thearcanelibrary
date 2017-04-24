@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Navbar, Button, Glyphicon } from 'react-bootstrap';
 import GameActions from '../actions/GameActions';
+import ErrorActions from '../actions/ErrorActions';
+import FileReaderInput from 'react-file-reader-input';
 
 class HeaderComponent extends Component {
 
@@ -9,8 +11,22 @@ class HeaderComponent extends Component {
     GameActions.saveGame();
   }
 
-  loadGame() {
-    GameActions.loadGame();
+  loadGame(e, results) {
+    results.forEach(result => {
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          let fileContents = reader.result;
+          let fileJSON = JSON.parse(fileContents);
+          GameActions.loadGame(fileJSON);
+        }
+        catch(err) {
+          ErrorActions.showError(err, "Failed to parse file. Please check it is formatted correctly and try again.");
+        }
+        
+      };
+      reader.readAsText(result[1]);
+    });
   }
 
   render() {
@@ -44,15 +60,13 @@ class HeaderComponent extends Component {
               </ul>
             </li>
           </ul>
-          <p className="navbar-btn">
-            <Button className="btn-brute" onClick={this.loadGame.bind(this)}><Glyphicon glyph="cloud-download" /> Load</Button>
+          <div className="navbar-btn">
+            <FileReaderInput className="load-game-file-input" as="text" id="my-file-input" onChange={this.loadGame}>
+              <Button className="btn-brute"><Glyphicon glyph="cloud-download" /> Load</Button>
+            </FileReaderInput>
             <Button className="btn-scoundrel" onClick={this.saveGame.bind(this)}><Glyphicon glyph="cloud-upload" /> Save</Button>
-          </p>
+          </div>
         </Navbar.Collapse>
-        
-
-        
-        
       </Navbar>
     );
   }

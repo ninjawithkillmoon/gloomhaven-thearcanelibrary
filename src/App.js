@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap';
 import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -11,13 +12,16 @@ import Prosperity from './components/Prosperity';
 import Achievements from './components/Achievements';
 import Unlocks from './components/Unlocks';
 import GameStore from './stores/GameStore';
+import ErrorStore from './stores/ErrorStore';
+import ErrorActions from './actions/ErrorActions';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      game: GameStore.getGame()
+      game: GameStore.getGame(),
+      error: ErrorStore.getError()
     }
 
     this.onChange = this.onChange.bind(this);
@@ -25,16 +29,23 @@ class App extends Component {
 
   componentWillMount() {
     GameStore.addGameChangeListener(this.onChange);
+    ErrorStore.addErrorChangeListener(this.onChange);
   }
 
   componentWillUnmount() {
     GameStore.removeGameChangeListener(this.onChange);
+    ErrorStore.addErrorChangeListener(this.onChange);
   }
 
   onChange() {
     this.setState({
-      game: GameStore.getGame()
+      game: GameStore.getGame(),
+      error: ErrorStore.getError()
     });
+  }
+
+  closeErrorModal() {
+    ErrorActions.clearError();
   }
 
   render() {
@@ -51,6 +62,25 @@ class App extends Component {
           <Route path="/prosperity" component={Prosperity}/>
           <Route path="/achievements" component={Achievements}/>
           <Route path="/unlocks" component={Unlocks}/>
+
+          <Modal id="modal" show={this.state.error != null} onHide={this.closeErrorModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Error</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="error-custom-message">
+                {this.state.error && this.state.error.message}
+              </div>
+              <div className="error-stack">
+                <pre>
+                  {this.state.error && this.state.error.originalError.stack}
+                </pre>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button className="btn-lightning" onClick={this.closeErrorModal}>Close</Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </Router>
     );
