@@ -203,6 +203,20 @@ class AchievementsComponent extends Component {
     return (
       <div className="container">
       	<Grid>
+          <Row>
+            <Col xs={12} md={12}>
+              <p>Here you can track your campaign's <strong>global achievements</strong> by selecting the buttons below.</p>
+              <p>You can toggle them from complete to incomplete. Some achievements are connected to each other and will automatically be lost when you mark another as complete.</p>
+            </Col>
+          </Row>
+          <Row className="global-achievement-key">
+            <Col xs={12} md={6} className="text-center">
+              <Button className="btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Achievement complete
+            </Col>
+            <Col xs={12} md={6} className="text-center">
+              <Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Achievement incomplete (or lost)
+            </Col>
+          </Row>
       		<Row>
       			<Col xs={12} md={12} className="achievements-container">
               <Row>

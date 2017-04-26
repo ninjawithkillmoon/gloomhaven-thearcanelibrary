@@ -452,6 +452,12 @@ class ProsperityComponent extends Component {
     return (
       <div className="container">
       	<Grid>
+	      	<Row>
+	      		<Col xs={12} md={12}>
+	      			<p>Use the buttons to keep track of the current <strong>prosperity level</strong> of <em>Gloomhaven</em>. As you reach new prosperity levels, the key below will let you know which items have been unlocked (the number refer to the <strong>big numbers</strong> on the backs of the cards, not the small number on the front).</p>
+	      			<p>Please note that the prosperity track is correct for the <strong>second printing</strong> of Gloomhaven. The first printing has one extra checkbox per prosperity level.</p>
+	      		</Col>
+	      	</Row>
       		<Row>
       			<Col xs={12} md={8} className="prosperity-checks-container">
       				<Row>
@@ -528,6 +534,13 @@ class ProsperityComponent extends Component {
       				<h2>Treasure</h2>
       			</Col>
       		</Row>
+      		<Row>
+	      		<Col xs={12} md={12}>
+	      			<p>Trying to remember what treasure overlay tiles you've missed? Look no further!</p>
+	      			<p>Any scenarios you have <strong>marked as unlocked</strong> on the <a href="/scenarios">Scenario</a> page will be marked as available below, allowing you to select them. Clicking on an available treasure button will mark it as discovered and <strong>reveal its contents</strong>.</p>
+	      			<p>Undiscovered treasures in scenarios you have <strong>marked as complete</strong> on the <a href="/scenarios">Scenario</a> page will be shown in red below.</p>
+	      		</Col>
+	      	</Row>
       		<Row className="treasure-key">
       			<Col xs={12} md={4} className="text-center">
       				<Button className="btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Treasure discovered
@@ -536,7 +549,7 @@ class ProsperityComponent extends Component {
       				<Button className="btn-doomstalker">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Treasure in available scenario
       			</Col>
       			<Col xs={12} md={4} className="text-center">
-      				<Button className="btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Treasure in complete scenario
+      				<Button className="btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Missed Treasure in complete scenario
       			</Col>
       		</Row>
       		<Row className="treasure-container">

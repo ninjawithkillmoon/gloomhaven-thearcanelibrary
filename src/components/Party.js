@@ -235,7 +235,7 @@ class PartyComponent extends Component {
                     type="text"
                     name="name"
                     value={this.state.name}
-                    placeholder="Enter party name"
+                    placeholder="Mercenaries need a catchy name"
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
@@ -245,7 +245,7 @@ class PartyComponent extends Component {
                     type="text"
                     name="partyLocation"
                     value={this.state.partyLocation}
-                    placeholder="Enter party location"
+                    placeholder="Where are your intrepid adventurers?"
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
@@ -287,6 +287,17 @@ class PartyComponent extends Component {
               <ControlLabel>Party Achievements</ControlLabel>
             </Col>
           </Row>
+          <Row className="party-achievements-key">
+            <Col xs={12} md={4} className="text-center">
+              <Button className="btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Achievement Unlocked
+            </Col>
+            <Col xs={12} md={4} className="text-center">
+              <Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Achievement Locked
+            </Col>
+            <Col xs={12} md={4} className="text-center">
+              <Button className="btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Achievement Lost
+            </Col>
+          </Row>
           <Row className="achievements-container">
             {achievementColumns}
           </Row>
@@ -300,6 +311,7 @@ class PartyComponent extends Component {
                     name="partyNotes"
                     value={this.state.partyNotes}
                     onChange={this.handleInputChange}
+                    placeholder="Use this text area to enter any information that you would like to keep"
                     className="party-text-area"
                   />
                 </FormGroup>

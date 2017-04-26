@@ -18,6 +18,7 @@
 
 .achievements-container {
 	margin-bottom: 10px;
+	margin-top: 10px;
 
 	.btn {
 		margin-bottom: 10px;
@@ -29,5 +30,12 @@
 		border-color: rgb(204, 204, 204);
 		border-width: 2px;
 		border-style: dashed;
+	}
+}
+
+.party-achievements-key {
+	div {
+		margin-bottom: 10px;
+		white-space: normal;
 	}
 }

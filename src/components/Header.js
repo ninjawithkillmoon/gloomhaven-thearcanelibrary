@@ -36,17 +36,17 @@ class HeaderComponent extends Component {
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Gloomhaven Companion</Link>
+            <Link to="/">The Arcane Library</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <ul className="nav navbar-nav">
-            <li className={path.startsWith("/scenarios") && "active"}><Link to="/scenarios">Scenarios</Link></li>
             <li className={path.startsWith("/party") && "active"}><Link to="/party">Party</Link></li>
-            <li className={path.startsWith("/characters") && "active"}><Link to="/characters">Characters</Link></li>
+            <li className={path.startsWith("/scenarios") && "active"}><Link to="/scenarios">Scenarios</Link></li>
             <li className={path.startsWith("/prosperity") && "active"}><Link to="/prosperity">Prosperity</Link></li>
             <li className={path.startsWith("/achievements") && "active"}><Link to="/achievements">Achievements</Link></li>
+            <li className={path.startsWith("/characters") && "active"}><Link to="/characters">Characters</Link></li>
             {/*<li className={path.startsWith("/unlocks") && "active"}><Link to="/unlocks">Unlocks</Link></li>}*/}
             <li className={path.startsWith("/utilities") ? "active dropdown" : "dropdown"}>
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

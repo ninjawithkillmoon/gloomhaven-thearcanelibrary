@@ -72,6 +72,11 @@ class ScenarioLevelComponent extends Component {
     return (
       <div className="container">
       	<Grid>
+          <Row>
+            <Col xs={12} md={12}>
+              <p>Select each of your characters' levels and the <strong>normal scenario level</strong> for your party will be displayed below. You can play on <strong>Easy</strong> (the indicated level -1), <strong>Normal</strong> (the indicated level), <strong>Hard</strong> (the indicated level +1) or <strong>Very Hard</strong> (the indicated level +2).</p>
+            </Col>
+          </Row>
       		<Row className="scenario-level-row">
             <Col xs={0} md={1}></Col>
       			{character1Buttons}

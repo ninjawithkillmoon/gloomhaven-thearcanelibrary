@@ -2,6 +2,7 @@
 
 .content {
   margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: $breakpoint-smaller-desktop) {
@@ -13,12 +14,6 @@
 @media (max-width: $breakpoint-tablet) {
   .content {
 		margin-top: 60px;
-	}
-}
-
-@media (max-width: $breakpoint-tiny-phone) {
-  .content {
-		margin-top: 110px;
 	}
 }
 

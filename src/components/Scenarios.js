@@ -851,6 +851,25 @@ class ScenariosComponent extends Component {
     return (
       <div className="container scenarios-container">
       	<Grid>
+          <Row>
+            <Col xs={12}>
+              <p>You can track your campaign's progress of <strong>unlocking and completing</strong> scenarios with the buttons below.</p>
+              <p>Each button has a number that corresponds to a scenario in the scenario book. Selecting a scenario button will reveal its name and mark it as <strong>unlocked</strong>. You can do this when you place a sticker on the map.</p>
+              <p>Selecting a scneario that has been unlocked will change its status to <strong>completed</strong>.</p>
+              <p>Both the <strong>party achievements</strong> and <strong>global achievements</strong> that you have marked as gained and lost in the app will determine whether you are eligible to do a scenario in campaign mode. The status of a scenario will <strong>update automatically</strong> as you gain and lose party and global achievements.</p>
+            </Col>
+          </Row>
+          <Row className="scenario-key">
+            <Col xs={12} md={4} className="text-center">
+              <Button className="btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Scenario successfully complete
+            </Col>
+            <Col xs={12} md={4} className="text-center">
+              <Button className="btn-doomstalker">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Scenario unlocked
+            </Col>
+            <Col xs={12} md={4} className="text-center">
+              <Button className="btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button> Ineligible for scenario
+            </Col>
+          </Row>
       		<Row>
       			{campaignMissionColumns}
       		</Row>

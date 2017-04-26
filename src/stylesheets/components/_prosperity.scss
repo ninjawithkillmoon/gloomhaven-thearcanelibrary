@@ -16,7 +16,14 @@
 	margin-bottom: 20px;
 }
 
-.treasure-container, .treasure-key {
+.treasure-key {
+	div {
+		margin-bottom: 10px;
+		white-space: normal;
+	}
+}
+
+.treasure-container {
 	button {
 		margin-bottom: 10px;
 		white-space: normal;

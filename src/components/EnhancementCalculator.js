@@ -367,8 +367,18 @@ class EnhancementCalculatorComponent extends Component {
     return (
       <div className="container">
       	<Grid className="enhancement-container">
+          <Row className="hidden-xs">
+            <Col xs={12} md={12}>
+              <blockquote>
+                <p>The base cost associated with any enhancement depends on the sticker <strong>and</strong> what ability the sticker is enhancing. Double the base cost of an enhancement (other than an attack hex) if it is applied to an ability that targets multiple figures. Additional costs are added based on the level of the ability card and the number of previously placed enhancement stickers on the same <strong>action</strong>.</p>
+                <p>The total number of enhanced cards in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town. Once placed, enhancement stickers should never be removed. <strong>Enhancements persist through all instances of a specific character class, even after retirement.</strong></p>
+                <footer>Gloomhaven rulebook <cite title="Source Title">Page 46</cite></footer>
+              </blockquote>
+            </Col>
+          </Row>
 
           {this.makeLabelRow("Enhancement Type")}
+
           <Row>
             {enhancementTypeColumns}
           </Row>

@@ -10,6 +10,7 @@ import ScenarioLevel from './components/ScenarioLevel';
 import EnhancementCalculator from './components/EnhancementCalculator';
 import Prosperity from './components/Prosperity';
 import Achievements from './components/Achievements';
+import Characters from './components/Characters';
 import Unlocks from './components/Unlocks';
 import GameStore from './stores/GameStore';
 import ErrorStore from './stores/ErrorStore';
@@ -62,6 +63,7 @@ class App extends Component {
           <Route path="/prosperity" component={Prosperity}/>
           <Route path="/achievements" component={Achievements}/>
           <Route path="/unlocks" component={Unlocks}/>
+          <Route path="/characters" component={Characters}/>
 
           <Modal id="modal" show={this.state.error != null} onHide={this.closeErrorModal}>
             <Modal.Header closeButton>
