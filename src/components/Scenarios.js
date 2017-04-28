@@ -667,7 +667,7 @@ class ScenariosComponent extends Component {
         for (let i=0; i<scenario.globalAchievementsRequiredIncomplete.length; i++) {
           let requiredGlobalAchievementIncomplete = scenario.globalAchievementsRequiredIncomplete[i];
 
-          if (this.state.globalAchievements[requiredGlobalAchievementIncomplete] === null) {
+          if (!this.state.globalAchievements[requiredGlobalAchievementIncomplete]) {
             // we do not have this achievement - carry on!
           }
           else {
