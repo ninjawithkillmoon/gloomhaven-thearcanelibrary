@@ -64,7 +64,7 @@ export const SCENARIOS = [
   { 
     title: "Plane of Elemental Power",
     globalAchievementsRequired: [],
-    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_NEUTRALIZED],
     partyAchievementsRequired: [] 
   },
   { 
@@ -130,7 +130,7 @@ export const SCENARIOS = [
   { 
     title: "Infernal Throne",
     globalAchievementsRequired: [],
-    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_NEUTRALIZED],
     partyAchievementsRequired: [] 
   },
   { 
@@ -220,13 +220,13 @@ export const SCENARIOS = [
   { 
     title: "Gloomhaven Battlements A",
     globalAchievementsRequired: [],
-    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_NEUTRALIZED],
     partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND] 
   },
   { 
     title: "Gloomhaven Battlements B",
     globalAchievementsRequired: [],
-    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_NEUTRALIZED],
     partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.A_DEMONS_ERRAND] 
   },
   { 
@@ -279,7 +279,7 @@ export const SCENARIOS = [
   },
   { 
     title: "Rebel Swamp",
-    globalAchievementsRequired: [],
+    globalAchievementsRequired: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC],
     globalAchievementsRequiredIncomplete: [],
     partyAchievementsRequired: [] 
   },
@@ -857,6 +857,7 @@ class ScenariosComponent extends Component {
               <p>Each button has a number that corresponds to a scenario in the scenario book. Selecting a scenario button will reveal its name and mark it as <strong>unlocked</strong>. You can do this when you place a sticker on the map.</p>
               <p>Selecting a scneario that has been unlocked will change its status to <strong>completed</strong>.</p>
               <p>Both the <strong>party achievements</strong> and <strong>global achievements</strong> that you have marked as gained and lost in the app will determine whether you are eligible to do a scenario in campaign mode. The status of a scenario will <strong>update automatically</strong> as you gain and lose party and global achievements.</p>
+              <p>Please note that the achievement requirements should be up to date for the <strong>second printing</strong> of Gloomhaven, because there were a number of loopholes closed. Please see the <strong>Scenario book</strong> and <strong>Sticker sheets</strong> section of <a href="https://boardgamegeek.com/thread/1761512/official-second-printing-change-log">Official Second Printing Change Log</a> for further details if you own the original printing.</p>
             </Col>
           </Row>
           <Row className="scenario-key">
