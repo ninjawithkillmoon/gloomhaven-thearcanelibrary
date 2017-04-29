@@ -16,7 +16,12 @@ let _game = {
   "globalAchievements": {},
   "scenariosUnlocked": [],
   "scenariosComplete": [],
-  "treasuresUnlocked": []
+  "treasuresUnlocked": [],
+  "monsterHealth": {
+    "defaultScenarioLevel": -1,
+    "scenario": -1,
+    "monsters": []
+  }
 };
 
 function setGame(game) {

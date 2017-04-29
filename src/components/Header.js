@@ -56,6 +56,7 @@ class HeaderComponent extends Component {
               <ul className="dropdown-menu">
                 <li><Link to="/utilities/scenarioLevel">Scenario Level</Link></li>
                 <li><Link to="/utilities/enhancementCalculator">Enhancement Calculator</Link></li>
+                <li><Link to="/utilities/monsterHealth">Monster Health</Link></li>
                 {/*<li role="separator" className="divider"></li>*/}
               </ul>
             </li>

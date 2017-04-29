@@ -8,6 +8,7 @@ import Scenarios from './components/Scenarios';
 import Party from './components/Party';
 import ScenarioLevel from './components/ScenarioLevel';
 import EnhancementCalculator from './components/EnhancementCalculator';
+import MonsterHealth from './components/MonsterHealth';
 import Prosperity from './components/Prosperity';
 import Achievements from './components/Achievements';
 import Characters from './components/Characters';
@@ -60,6 +61,7 @@ class App extends Component {
           <Route path="/party" component={Party}/>
           <Route path="/utilities/scenarioLevel" component={ScenarioLevel}/>
           <Route path="/utilities/enhancementCalculator" component={EnhancementCalculator}/>
+          <Route path="/utilities/monsterHealth" component={MonsterHealth}/>
           <Route path="/prosperity" component={Prosperity}/>
           <Route path="/achievements" component={Achievements}/>
           <Route path="/unlocks" component={Unlocks}/>

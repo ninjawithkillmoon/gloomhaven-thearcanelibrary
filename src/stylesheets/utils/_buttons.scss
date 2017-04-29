@@ -52,5 +52,38 @@
 		@extend .btn-custom;
 		background-color: $colour-scoundrel;
 		border-color: $colour-scoundrel;
-	}	
+	}
+
+	.btn-monster-normal, .btn-monster-normal:focus, .btn-monster-normal:hover {
+		@extend .btn-custom;
+		background-color: white;
+		color: black;
+	}
+
+	.btn-monster-elite, .btn-monster-elite:hover, .btn-monster-elite:focus {
+		@extend .btn-custom;
+		background-color: $colour-elite;
+		border-color: $colour-elite;
+		color: black;
+	}
+
+	.btn-monster-dead, .btn-monster-dead:hover, .btn-monster-dead:focus {
+		@extend .btn-custom;
+		background-color: white;
+		color: lightgrey;
+		text-decoration: line-through;
+	}
+
+	.btn-disabled {
+		@extend .btn-custom;
+		opacity: 0.2;
+	}
+
+	.btn-disabled:hover {
+		opacity: 0.2;
+	}
+
+	.btn-disabled:focus {
+		opacity: 0.2;
+	}
 }
