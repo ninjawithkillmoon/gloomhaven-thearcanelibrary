@@ -469,7 +469,7 @@ class EnhancementCalculatorComponent extends Component {
           </Row>
           <Row>
             <Col className="enhancement-col text-center instruction-bottom" xs={12} md={12}>
-              The total number of enhancements in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town.
+              The total number of <strong>enhanced cards</strong> in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town.
             </Col>
           </Row>
       	</Grid>
