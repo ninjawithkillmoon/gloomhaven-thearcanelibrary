@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
+  {
+    versionNumber: "1.1",
+    items: [
+      "added sanctuary donations tracker"
+    ],
+    date: "2017/06/10"
+  },
   { 
     versionNumber: "1.0",
     items: [
@@ -80,12 +87,7 @@ class HomeComponent extends Component {
           </Row>
           <Row>
             <Col xs={12} md={12}>
-              <ul>
-                <li>Town Records</li>
-                <li>Multi-party support</li>
-                <li>Monster Health Tracker</li>
-                <li>Suggestions welcome...</li>
-              </ul>
+              <p>You can view the GitHub repository's list of bugs and new features here: <a href="https://github.com/ninjawithkillmoon/gloomhaven-thearcanelibrary/issues">Issues</a>. Feel free to comment or make requests.</p>
             </Col>
           </Row>
           <Row>
