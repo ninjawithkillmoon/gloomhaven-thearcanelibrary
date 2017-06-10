@@ -82,6 +82,8 @@ export const TREASURES = [
 	{ title: "A Mysterious Message (please see Scenario Book to view)" }, // 75
 ];
 
+export const DONATION_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100];
+
 // index: scenario number; value: treasure tiles in that scenario
 export const SCENARIO_TREAURES = [
 	[], // dummy treasure tile for "scenario zero"
@@ -280,6 +282,46 @@ class ProsperityComponent extends Component {
   	GameActions.changeProsperity(-1);
   }
 
+  donateToGreatOak(amount) {
+  	let newDonations = this.state.donations + amount || 0;
+  	let prosperityChange = 0;
+
+    if (newDonations > 100) {
+      newDonations = 100;
+    }
+
+    if (newDonations < 0) {
+      newDonations = 0;
+    }
+
+    if (newDonations !== this.state.donations) {
+    	if (DONATION_MILESTONES.indexOf(newDonations) > -1 && amount > 0) {
+    		// if we've actually changed the donation level and we've reached a milestone
+    		prosperityChange = 1;
+    	}
+    	else if (DONATION_MILESTONES.indexOf(this.state.donations) > -1 && amount < 0) {
+    		prosperityChange = -1;
+    	}
+    }
+
+    let newProsperity = this.state.prosperity + prosperityChange;
+
+    if (newProsperity > 64) {
+    	newProsperity = 64;
+    }
+
+    if (newProsperity < 0) {
+    	newProsperity = 0;
+    }
+
+    this.setState({
+      donations: newDonations,
+      prosperity: newProsperity
+    }, function() {
+      GameActions.changeGame(this.state);
+    });
+  }
+
   componentWillMount() {
     GameStore.addGameChangeListener(this.onChange);
   }
@@ -449,12 +491,35 @@ class ProsperityComponent extends Component {
 			}
   	}
 
+  	let donationChecks = [];
+
+  	for (let i=1; i<=this.state.donations && (this.state.donations >= 10 || i <=10); i++) {
+			if (DONATION_MILESTONES.indexOf(i) > -1) {
+				donationChecks.push(<Glyphicon className="milestone" glyph="check" key={i} />);
+			}
+			else {
+				donationChecks.push(<Glyphicon glyph="check" key={i} />);	
+			}
+  	}
+
+  	for (let i=this.state.donations + 1; i<=100 && (this.state.donations >= 10 || i <=10); i++) {
+			if (DONATION_MILESTONES.indexOf(i) > -1) {
+				donationChecks.push(<Glyphicon className="milestone" glyph="unchecked" key={i} />);
+			}
+			else {
+				donationChecks.push(<Glyphicon glyph="unchecked" key={i} />);
+			}
+  	}
+
     return (
       <div className="container">
       	<Grid>
 	      	<Row>
 	      		<Col xs={12} md={12}>
 	      			<p>Use the buttons to keep track of the current <strong>prosperity level</strong> of <em>Gloomhaven</em>. As you reach new prosperity levels, the key below will let you know which items have been unlocked (the number refer to the <strong>big numbers</strong> on the backs of the cards, not the small number on the front).</p>
+	      			{this.state.donations >= 10 &&
+	      				<p>When donating to the <strong>Sanctuary of the Great Oak</strong>, the prosperity level will automatically be adjusted when you reach a new milestone.</p>
+	      			}
 	      			<p>Please note that the prosperity track is correct for the <strong>second printing</strong> of Gloomhaven. The first printing has one extra checkbox per prosperity level.</p>
 	      		</Col>
 	      	</Row>
@@ -477,6 +542,25 @@ class ProsperityComponent extends Component {
 							<Row className="prosperity-checks-list">
 								<Col xs={12} md={12}>
 									{prosperityChecks}
+								</Col>
+							</Row>
+							<Row>
+      					<Col xs={12} md={12} className="text-center">
+									<h2>Sanctuary of the Great Oak</h2>
+								</Col>
+								<Col xs={12} md={12} className="prosperity-label-container text-center">
+									<Label className="label-xxlarge label-brute">{this.state.donations * 10}</Label>
+								</Col>
+      					<Col xs={6} md={6}>
+      						<Button href="#" className="btn-lightning" block onClick={() => this.donateToGreatOak(-1)}><Glyphicon glyph="minus" /></Button>
+      					</Col>
+      					<Col xs={6} md={6}>
+      						<Button href="#" className="btn-scoundrel" block onClick={() => this.donateToGreatOak(1)}><Glyphicon glyph="plus" /></Button>
+      					</Col>
+      				</Row>
+							<Row className="prosperity-checks-list">
+								<Col xs={12} md={12}>
+									{donationChecks}
 								</Col>
 							</Row>
       			</Col>
