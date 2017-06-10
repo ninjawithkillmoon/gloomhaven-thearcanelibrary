@@ -104,6 +104,7 @@ class HomeComponent extends Component {
                 <li><a href="mailto:john.william.tonkin+thearcanelibrary@gmail.com">Email</a></li>
               </ul>
               <p>The code is available open source on <a href="https://github.com/ninjawithkillmoon/gloomhaven-thearcanelibrary">GitHub</a>. It is built using the front-end JavaScript framework <a href="https://facebook.github.io/react/">React</a>.</p>
+              <p>There is a Slack channel for development discussion. Message me for an invite if you would like to be involved.</p>
               <p>Feel free to contact me regarding the app: bugs reports, feature requests, comments or offers of assistance all appreciated.</p>
               <p>None of this would be possible without the wonderful creation that is <strong><a href="https://boardgamegeek.com/boardgame/174430/gloomhaven">Gloomhaven</a></strong>, a board game by <strong><a href="https://boardgamegeek.com/boardgamedesigner/69802/isaac-childres">Isaac Childres</a></strong> at <strong><a href="http://www.cephalofair.com/">Cephalofair Games</a></strong>.</p>
             </Col>

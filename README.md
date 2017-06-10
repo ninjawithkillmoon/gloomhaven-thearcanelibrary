@@ -1,3 +1,7 @@
+We have a Slack channel for dev related discussion - message me for an invite if you want to work on the app.
+
+Below is the documention of Create React App, which will assist in building and developing many parts of the project.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
