@@ -17,6 +17,10 @@ export default {
       game.globalAchievements[ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] = false;
       game.globalAchievements[ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED] = false;
     }
+
+    if (!game.donations) {
+      game.donations = 0;
+    }
   },
 
   loadGame(game) {

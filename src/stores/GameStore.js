@@ -9,6 +9,7 @@ const MAX_PROSPERITY = 64;
 let _game = {
   "name": "",
   "prosperity": 0,
+  "donations": 0,
   "partyLocation": "",
   "partyNotes": "",
   "partyAchievements": "",
