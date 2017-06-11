@@ -20,6 +20,7 @@ let _game = {
   "treasuresUnlocked": [],
   "monsterHealth": {
     "defaultScenarioLevel": -1,
+    "defaultNumPlaying": -1,
     "scenario": -1,
     "monsters": []
   }
