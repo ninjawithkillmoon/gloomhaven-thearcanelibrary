@@ -83,7 +83,7 @@ class MonsterHealthComponent extends Component {
     );
   }
 
-  calculateBossHealth(healthString, scenarioLevel) {
+  calculateBossHealth(healthString, scenarioLevel, numPlaying) {
     let health = 0;
 
     let healthParts = healthString.split("x");
@@ -94,7 +94,7 @@ class MonsterHealthComponent extends Component {
       // translate this part of the health string to a number
       if (healthPart === "C") {
         // number of characters
-        healthPart = 4; // UPDATE THIS TO NUMBER OF CHARACTERS WHEN IMPLEMENTED
+        healthPart = numPlaying;
       }
       else if (healthPart === "L") {
         // scenario level
@@ -115,13 +115,14 @@ class MonsterHealthComponent extends Component {
   }
 
   makeMonsterHealthProgressBar(monsterToDisplay) {
+    let gameCopy = this.state.game;
     let monsterType = this.getMonsterType(monsterToDisplay.name);
     let monsterLevelStats = this.getMonsterLevelStats(monsterToDisplay);
 
     let maxHealth = 0;
 
     if (monsterType.isBoss) {
-      maxHealth = this.calculateBossHealth(monsterLevelStats.health, monsterToDisplay.level);
+      maxHealth = this.calculateBossHealth(monsterLevelStats.health, monsterToDisplay.level, gameCopy.monsterHealth.defaultNumPlaying);
     }
     else {
       if (monsterToDisplay.elite) {
@@ -323,9 +324,24 @@ class MonsterHealthComponent extends Component {
     );
   }
 
+  createNumCharactersButton(value, activeValue) {
+    return (
+      <Col xs={1} md={1} key={value}>
+        <Button onClick={() => this.numCharactersButtonClick(value)} className={activeValue === value ? "btn-doomstalker" : ""} block>{value}</Button>
+      </Col>
+    );
+  }
+
   levelButtonClick(value) {
     let gameCopy = this.state.game;
     gameCopy.monsterHealth.defaultScenarioLevel = value;
+
+    this.updateGame(gameCopy);
+  }
+
+  numCharactersButtonClick(value) {
+    let gameCopy = this.state.game;
+    gameCopy.monsterHealth.defaultNumPlaying = value;
 
     this.updateGame(gameCopy);
   }
@@ -437,6 +453,12 @@ class MonsterHealthComponent extends Component {
       scenarioLevelButtons.push(this.createScenarioLevelButton(i, this.state.game.monsterHealth.defaultScenarioLevel));
     }
 
+    let numCharactersButtons = [];
+
+    for (let i=2; i<=4; i++) {
+        numCharactersButtons.push(this.createNumCharactersButton(i, this.state.game.monsterHealth.defaultNumPlaying));
+    }
+
     let monsterHeaderButtons = [];
 
     for (let monsterNameProperty in this.state.game.monsterHealth.monsters) {
@@ -488,6 +510,14 @@ class MonsterHealthComponent extends Component {
             {scenarioLevelButtons}
           </Row>
           {this.state.game.monsterHealth.defaultScenarioLevel > -1 &&
+            <Row className="monster-health-row">
+              <Col xs={12} md={4}>
+                Num Characters Playing
+              </Col>
+                {numCharactersButtons}
+            </Row>
+          }
+          {this.state.game.monsterHealth.defaultScenarioLevel > -1 && this.state.game.monsterHealth.defaultNumPlaying > -1 &&
             <Row className="monster-health-row">
               <Col xs={12} md={4}>
                 Scenario
