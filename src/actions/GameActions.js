@@ -37,7 +37,7 @@ export default {
     // generates a JSON representation of the game and saves it in a file for the user to save on disk
 
     let data = JSON.stringify(GameStore.getGame(), null, 2); // pretty prints, but line endings don't seem to be 
-    data = data.replace(/[\n\r]/g, '\r\n'); // ensure Windows line endings, in case anyone is actually stupid enough to open the generated file in Notepad
+    data = data.replace(/[\n\r]/g, '\r\n'); // ensure Windows line endings, in case anyone is actually naive enough to open the generated file in Notepad
 
     let filename = "gloomhaven_save_" + moment().format("YYYYMMDD_HHmm");
 
