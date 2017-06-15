@@ -55,3 +55,4 @@ yarn-error.log*
 
 # generated css
 src/**/*.css
+!src/index.css
