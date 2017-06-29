@@ -3,6 +3,15 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
   {
+    versionNumber: "1.2",
+    items: [
+      "added Kickstarter scenarios",
+      "added Kickstarter scenario treasures",
+      "Google Analytics implemented"
+    ],
+    date: "2017/06/29"
+  },
+  {
     versionNumber: "1.1",
     items: [
       "added sanctuary donations tracker"
