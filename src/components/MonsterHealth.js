@@ -474,8 +474,6 @@ class MonsterHealthComponent extends Component {
       scenarioNumber = this.state.game.monsterHealth.scenario;
     }
 
-    
-
     let displayedMonsterSections = this.makeDisplayedMonsterSections();
 
     return (
@@ -483,17 +481,17 @@ class MonsterHealthComponent extends Component {
       	<Grid>
           <Row className="monster-health-row">
             <Col xs={12} md={12}>
-              <p><strong>CAUTION!</strong> This is a work in progress feature and while it is mostly functioning, there are a couple of issues.</p>
+              <p><strong>How to use:</strong></p>
               <ol>
                 <li>Select scenario level</li>
-                <li>Enter scenario number</li>
-                <li>Press the <strong>Go</strong> button</li>
+                <li>Enter scenario number (Kickstarter scenarios are numbers 96 to 105)</li>
+                <li>Press the <strong>Reset</strong> button</li>
                 <li>
                   To create monsters, press on the desired monster type
                   <ul>
                     <li>Each monster name has a number - this is the standee that it refers to</li>
                     <li>Tapping on the monster name will toggle between dead/normal/elite</li>
-                    <li>The individual scenario level for each monster is displayed to the right of the name</li>
+                    <li>The individual scenario level for each monster is displayed to the right of the name (you can tap this to change it per monster)</li>
                     <li>Starting health will be the monster's health according to their level</li>
                   </ul>
                 </li>
@@ -526,7 +524,7 @@ class MonsterHealthComponent extends Component {
                 <input type="number" className="form-control" value={scenarioNumber} onChange={this.handleScenarioChange} placeholder="Enter scenario number" />
               </Col>
               <Col xs={12} md={4}>
-                <Button className="btn-scoundrel" block onClick={this.scenarioGo}>Go</Button>
+                <Button className="btn-lightning" block onClick={this.scenarioGo}>Reset</Button>
               </Col>
             </Row>
           }

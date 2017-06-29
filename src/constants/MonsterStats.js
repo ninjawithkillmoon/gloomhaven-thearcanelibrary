@@ -8992,6 +8992,80 @@ export const SCENARIO_MONSTERS =
             ,   {"name": "Earth Demon"}
             ,   {"name": "Savvas Lavaflow"}
             ]
-        }
+        },
+        { name: "#K1 Just Another Night"
+        , decks:
+            [   {"name": "Bandit Archer"}
+            ,   {"name": "Bandit Guard"}
+            ,   {"name": "Inox Archer"}
+            ,   {"name": "Inox Guard"}
+            ,   {"name": "Inox Shaman"}
+            ]
+        },
+        { name: "#K2 A Quatryl Scorned"
+        , decks:
+            [   {"name": "Bandit Archer"}
+            ,   {"name": "Bandit Guard"}
+            ,   {"name": "Ancient Artillery"}
+            ]
+        },
+        { name: "#K3 Unreliable Medicine"
+        , decks:
+            [   {"name": "Giant Viper"}
+            ,   {"name": "Earth Demon"}
+            ,   {"name": "Vermling Scout"}
+            ,   {"name": "Vermling Shaman"}
+            ]
+        },
+        { name: "#K4 Unlikely Allies"
+        , decks:
+            [   {"name": "Vermling Scout"}
+            ,   {"name": "Giant Viper"}
+            ]
+        },
+        { name: "#K5 The Sun Spire"
+        , decks:
+            [   {"name": "Vermling Scout"}
+            ,   {"name": "Sun Demon"}
+            ,   {"name": "Black Imp"}
+            ,   {"name": "Vermling Shaman"}
+            ]
+        },
+        { name: "#K6 A Ship in a Storm"
+        , decks:
+            [   {"name": "Wind Demon"}
+            ,   {"name": "Lurker"}
+            ,   {"name": "Frost Demon"}
+            ]
+        },
+        { name: "#K7 Arrival in Chains"
+        , decks:
+            [   {"name": "Cave Bear"}
+            ,   {"name": "Rending Drake"}
+            ,   {"name": "Spitting Drake"}
+            ,   {"name": "Stone Golem"}
+            ]
+        },
+        { name: "#K8 The Doctor's Lab"
+        , decks:
+            [   {"name": "Living Bones"}
+            ,   {"name": "Ancient Artillery"}
+            ,   {"name": "Ooze"}
+            ,   {"name": "Stone Golem"}
+            ]
+        },
+        { name: "#K9 Skewed Perspective"
+        , decks:
+            [   {"name": "Hound"}
+            ,   {"name": "Cultist"}
+            ,   {"name": "Living Spirit"}
+            ]
+        },
+        { name: "#K10 Panic Room"
+        , decks:
+            [   {"name": "Night Demon"}
+            ,   {"name": "Deep Terror"}
+            ]
+        },
 
     ];
