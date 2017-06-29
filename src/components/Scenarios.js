@@ -583,6 +583,66 @@ export const SCENARIOS = [
     globalAchievementsRequiredIncomplete: [],
     partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THROUGH_THE_NEST] 
   },
+  { 
+    title: "Just Another Night",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "A Quatryl Scorned",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Unreliable Medicine",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Unlikely Allies",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "The Sun Spire",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "A Ship in a Storm",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Arrival in Chains",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "The Doctor's Lab",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Skewed Perspective",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
+  { 
+    title: "Panic Room",
+    globalAchievementsRequired: [],
+    globalAchievementsRequiredIncomplete: [],
+    partyAchievementsRequired: [] 
+  },
 ];
 
 class ScenariosComponent extends Component {
@@ -728,6 +788,12 @@ class ScenariosComponent extends Component {
 
     // always show number, but only show scenario title if it is unlocked
     let buttonText = number;
+
+    // special text on button for kickstarter scenarios:
+    if (number >= 96 && number <= 105) {
+      buttonText = "K" + (buttonText - 95); // will show K1 - K10 instead of the number
+    }
+
     if (this.state.scenariosUnlocked.indexOf(number) >= 0) {
       buttonText += ": " + scenario.title;
       xs = 12;
@@ -827,6 +893,7 @@ class ScenariosComponent extends Component {
     let personalQuestColumns = [];
     let randomScenarioColumns = [];
     let otherColumns = [];
+    let kickstarterColumns = [];
 
     // campaign missions
     for (let i=1; i<= 51; i++) {
@@ -846,6 +913,11 @@ class ScenariosComponent extends Component {
     // other
     for (let i=72; i<= 95; i++) {
       otherColumns.push(this.makeScenarioColumn(i));
+    }
+
+    // kickstarter scenarios
+    for (let i=96; i<= 105; i++) {
+      kickstarterColumns.push(this.makeScenarioColumn(i));
     }
 
     return (
@@ -885,6 +957,10 @@ class ScenariosComponent extends Component {
           <hr />
           <Row>
             {otherColumns}
+          </Row>
+          <hr />
+          <Row>
+            {kickstarterColumns}
           </Row>
       	</Grid>
       </div>
