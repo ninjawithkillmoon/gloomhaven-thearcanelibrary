@@ -484,7 +484,7 @@ class MonsterHealthComponent extends Component {
               <p><strong>How to use:</strong></p>
               <ol>
                 <li>Select scenario level</li>
-                <li>Enter scenario number (Kickstarter scenarios are numbers 96 to 105)</li>
+                <li>Enter scenario number (Kickstarter scenarios are numbers 96 to 105; solo scenarios are numbers 106 to 122)</li>
                 <li>Press the <strong>Reset</strong> button</li>
                 <li>
                   To create monsters, press on the desired monster type
