@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button, ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, Button, ProgressBar, Modal } from 'react-bootstrap';
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
+import GloomhavenIcon from '../components/utils/GloomhavenIcon';
 import * as MONSTER_STATS from '../constants/MonsterStats';
+
+const iconWidth = "30px";
+const iconWidthSmall = "18px";
 
 class MonsterHealthComponent extends Component {
 
@@ -11,7 +15,8 @@ class MonsterHealthComponent extends Component {
 
     this.state = {
       game: GameStore.getGame(),
-      displayMonsterType: "ACTIVE"
+      displayMonsterType: "ACTIVE",
+      statusTokenPopup: ""
     } 
 
     this.onChange = this.onChange.bind(this);
@@ -71,8 +76,26 @@ class MonsterHealthComponent extends Component {
       }
     }
 
+    buttonClass += " btn-monster";
+
+    let monsterStatusTokens = [];
+
+    if (!monsterToDisplay.statusTokens) {
+      monsterToDisplay.statusTokens = [];
+    }
+
+    for (let i=0; i<monsterToDisplay.statusTokens.length; i++) {
+      let statusToken = monsterToDisplay.statusTokens[i];
+
+      monsterStatusTokens.push(
+        <GloomhavenIcon key={i} icon={statusToken} width={iconWidthSmall} />
+      );
+    }
+
     return (
-      <Button disabled={this.isDisplayActiveOnly()} block onClick={() => this.toggleMonster(monsterToDisplay)} className={buttonClass}>{monsterToDisplay.name + ' ' + (monsterToDisplay.number)}</Button>
+      <Button block onClick={() => this.toggleMonster(monsterToDisplay)} className={buttonClass}>
+        {monsterToDisplay.name + ' ' + (monsterToDisplay.number)} {monsterStatusTokens}
+      </Button>
     );
     
   }
@@ -264,6 +287,7 @@ class MonsterHealthComponent extends Component {
           level: gameCopy.monsterHealth.defaultScenarioLevel,
           alive: false,
           damage: 0,
+          statusTokens: []
         });
       }
 
@@ -404,35 +428,66 @@ class MonsterHealthComponent extends Component {
     }
   }
 
+  toggleStatusToken(statusToken, monster) {
+    let gameCopy = this.state.game;
+
+    // for backwards compatibility
+    if (!monster.statusTokens) {
+      monster.statusTokens = [];
+    }
+
+    let index = monster.statusTokens.indexOf(statusToken);
+    if (index >= 0) {
+      // remove this status token from monster
+      monster.statusTokens.splice(index, 1);
+    }
+    else {
+      // add this status token to monster
+      monster.statusTokens.push(statusToken);
+    }
+
+    this.updateGame(gameCopy);
+  }
+
   toggleMonster(monster) {
     let gameCopy = this.state.game;
 
     let monsterType = this.getMonsterType(monster.name);
     let monsterIndex = monster.number - 1;
-    
-    // regular monster: dead -> alive (normal) -> alive (elite) -> dead -> ...
-    // boss monster: dead -> alive (normal) -> dead -> ...
-    if (!monster.alive) {
-      // dead -> alive (normal)
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-    }
-    else if (monster.elite) {
-      // alive (elite) -> dead
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
-    }
-    else if (!monsterType.isBoss) {
-      // currently alive and normal
-      // alive (normal) -> alive (elite)
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
+
+    if (this.isDisplayActiveOnly()) {
+      // if we're display all active monsters, then this button displays the status tokens popup
+      this.setState({
+        statusTokenPopup: monster
+      });
     }
     else {
-      // currently alive and normal
-      // alive (normal) -> dead
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+      // if we're displaying only monsters of a particular type, then this button toggles between normal/elite/summon/dead
+
+      // regular monster: dead -> alive (normal) -> alive (elite) -> dead -> ...
+      // boss monster: dead -> alive (normal) -> dead -> ...
+      if (!monster.alive) {
+        // dead -> alive (normal)
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+      }
+      else if (monster.elite) {
+        // alive (elite) -> dead
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+      }
+      else if (!monsterType.isBoss) {
+        // currently alive and normal
+        // alive (normal) -> alive (elite)
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
+      }
+      else {
+        // currently alive and normal
+        // alive (normal) -> dead
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
+        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+      }
     }
 
     this.updateGame(gameCopy);
@@ -444,6 +499,36 @@ class MonsterHealthComponent extends Component {
     }, function() {
       GameActions.changeGame(this.state.game);
     });
+  }
+
+  closeStatusTokenPopup() {
+    this.setState({
+      statusTokenPopup: ""
+    });
+  }
+
+  makeStatusTokenButtons() {
+    let buttons = [];
+
+    if (this.state.statusTokenPopup === "") {
+      return buttons;
+    }
+
+    let statusTokens = ["statusEffectStun", "statusEffectDisarm", "statusEffectImmobilize", "statusEffectPoison", "statusEffectWound", "statusEffectMuddle", "statusEffectStrengthen", "statusEffectInvisible"];
+
+    for (let i=0; i< statusTokens.length; i++) {
+      let statusToken = statusTokens[i];
+
+      buttons.push(
+        <Col key={i} xs={4} md={3}>
+          <Button block onClick={() => this.toggleStatusToken(statusToken, this.state.statusTokenPopup)} className={this.state.statusTokenPopup.statusTokens && this.state.statusTokenPopup.statusTokens.indexOf(statusToken) >= 0 ? "btn-doomstalker" : ""}>
+            <GloomhavenIcon icon={statusToken} width={iconWidth} />
+          </Button>
+        </Col>
+      );
+    }
+
+    return buttons;
   }
 
   render() {
@@ -476,8 +561,24 @@ class MonsterHealthComponent extends Component {
 
     let displayedMonsterSections = this.makeDisplayedMonsterSections();
 
+    let statusTokenButtons = this.makeStatusTokenButtons();
+
     return (
       <div className="container">
+        <Modal id="modal" show={this.state.statusTokenPopup !== ""} onHide={() => this.closeStatusTokenPopup()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Status Effects for {this.state.statusTokenPopup.name} {this.state.statusTokenPopup.number}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row className="status-token-buttons row">
+              {statusTokenButtons}
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button className="btn-lightning" onClick={() => this.closeStatusTokenPopup()}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
       	<Grid>
           <Row className="monster-health-row">
             <Col xs={12} md={12}>
