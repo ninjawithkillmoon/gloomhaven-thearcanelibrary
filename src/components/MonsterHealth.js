@@ -598,6 +598,7 @@ class MonsterHealthComponent extends Component {
                 </li>
                 <li>When you're done creating monsters, press the <strong>All Active</strong> button to show only monsters that are on the board</li>
                 <li>The blue buttons control the monsters remaining health</li>
+                <li>When viewing <strong>All Active monsters</strong>, pressing the monsters name will allow you to toggle the <strong>status effects</strong> applied to that monster</li>
                 <li>When a monster is dead, press the <strong>Kill Monster</strong> button to remove them from the active list</li>
               </ol>
             </Col>
