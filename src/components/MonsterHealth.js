@@ -20,7 +20,6 @@ class MonsterHealthComponent extends Component {
     } 
 
     this.onChange = this.onChange.bind(this);
-    this.handleScenarioChange = this.handleScenarioChange.bind(this);
     this.scenarioGo = this.scenarioGo.bind(this);
   }
 
@@ -111,7 +110,7 @@ class MonsterHealthComponent extends Component {
 
   makeMonsterKillButton(monsterToDisplay) {
     return (
-      <Button disabled={!monsterToDisplay.alive} block onClick={() => { if(confirm("Kill monster?")) { this.killMonster(monsterToDisplay); } } } className={"btn-lightning" + (!monsterToDisplay.alive ? " btn-disabled" : "")}>Kill Monster</Button>
+      <Button disabled={!monsterToDisplay.alive} block onClick={() => this.showConfirmKillMonster(monsterToDisplay)} className={"btn-lightning" + (!monsterToDisplay.alive ? " btn-disabled" : "")}>Kill Monster</Button>
     );
   }
 
@@ -351,16 +350,6 @@ class MonsterHealthComponent extends Component {
     });
   }
 
-  handleScenarioChange(event) {
-    const target = event.target;
-    const value = target.value;
-
-    let gameCopy = this.state.game;
-    gameCopy.monsterHealth.scenario = value;
-
-    this.updateGame(gameCopy);
-  }
-
   createScenarioLevelButton(value, activeValue) {
     return (
       <Col xs={1} md={1} key={value}>
@@ -398,8 +387,11 @@ class MonsterHealthComponent extends Component {
 
     gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
     gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+    gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens = [];
 
     this.updateGame(gameCopy);
+
+    this.closeConfirmKillMonster();
   }
 
   changeMonsterScenarioLevel(monster) {
@@ -569,6 +561,91 @@ class MonsterHealthComponent extends Component {
     return buttons;
   }
 
+  showScenarioChooser() {
+    this.setState({
+      showScenarioChooser: true
+    });
+  }
+
+  showMonsterChooser() {
+    this.setState({
+      showMonsterChooser: true
+    });
+  }
+
+  closeScenarioChooser() {
+    this.setState({
+      showScenarioChooser: false
+    });
+  }
+
+  closeConfirmKillMonster() {
+    this.setState({
+      confirmKillMonster: null
+    });
+  }
+
+
+  showConfirmKillMonster(monster) {
+    this.setState({
+      confirmKillMonster: monster
+    });
+  }
+
+  closeMonsterChooser() {
+    this.setState({
+      showMonsterChooser: false
+    });
+  }
+
+  makeScenarioChooserButtons() {
+    let buttons = [];
+
+    for (let i=1; i<=95; i++) {
+      buttons.push(this.makeScenarioChooserButton(i, i));
+    }
+
+    return buttons;
+  }
+
+  makeKickstarterScenarioChooserButtons() {
+    let buttons = [];
+
+    for (let i=96; i<=105; i++) {
+      buttons.push(this.makeScenarioChooserButton('K' + (i-95), i));
+    }
+
+    return buttons;
+  }
+
+  makeSoloScenarioChooserButtons() {
+    let buttons = [];
+
+    for (let i=106; i<=122; i++) {
+      buttons.push(this.makeScenarioChooserButton('S' + (i-105), i));
+    }
+
+    return buttons;
+  }
+
+  makeScenarioChooserButton(buttonText, scenarioNumber) {
+    return(
+      <Col xs={2} key={scenarioNumber}>
+        <Button block className="btn-doomstalker btn-scenario-chooser" onClick={() => this.chooseScenario(scenarioNumber)}>{buttonText}</Button>
+      </Col>
+    );
+  }
+
+  chooseScenario(scenarioNumber) {
+    let gameCopy = this.state.game;
+    gameCopy.monsterHealth.scenario = scenarioNumber;
+    this.updateGame(gameCopy);
+
+    this.scenarioGo();
+
+    this.closeScenarioChooser();
+  }
+
   render() {
     let scenarioLevelButtons = [];
 
@@ -592,14 +669,13 @@ class MonsterHealthComponent extends Component {
 
     monsterHeaderButtons.push(this.createMonsterHeaderActiveButton());
 
-    let scenarioNumber = "";
-    if (this.state.game.monsterHealth.scenario > 0) {
-      scenarioNumber = this.state.game.monsterHealth.scenario;
-    }
-
     let displayedMonsterSections = this.makeDisplayedMonsterSections();
 
     let statusTokenButtons = this.makeStatusTokenButtons();
+
+    let scenarioChooserButtons = this.makeScenarioChooserButtons();
+    let kickstarterScenarioChooserButtons = this.makeKickstarterScenarioChooserButtons();
+    let soloScenarioChooserButtons = this.makeSoloScenarioChooserButtons();
 
     return (
       <div className="container">
@@ -617,7 +693,109 @@ class MonsterHealthComponent extends Component {
           </Modal.Footer>
         </Modal>
 
+        <Modal id="modal" show={this.state.showScenarioChooser} onHide={() => this.closeScenarioChooser()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Choose Scenario</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col xs={12}>
+                <span>Warning: selecting a new scenario will wipe all unsaved existing monster health data.</span>
+              </Col>
+            </Row>
+            <hr/>
+            <Row className="scenario-chooser-container">
+              {scenarioChooserButtons}
+            </Row>
+            <hr/>
+            <Row className="scenario-chooser-container">
+              {kickstarterScenarioChooserButtons}
+            </Row>
+            <hr/>
+            <Row className="scenario-chooser-container">
+              {soloScenarioChooserButtons}
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button className="btn-lightning" onClick={() => this.closeScenarioChooser()}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal id="modal" show={this.state.showMonsterChooser} onHide={() => this.closeMonsterChooser()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Choose Monsters</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              Coming soon...
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button className="btn-lightning" onClick={() => this.closeMonsterChooser()}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal id="modal" show={this.state.confirmKillMonster && this.state.confirmKillMonster !== null} onHide={() => this.closeConfirmKillMonster()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Kill Monster</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col xs={12}>
+                <span>Are you sure you want to kill this monster?</span>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={6}>
+                <Button block className="btn-scoundrel" onClick={() => this.killMonster(this.state.confirmKillMonster)}>Kill</Button>
+              </Col>
+              <Col xs={6}>
+                <Button block className="btn-lightning" onClick={() => this.closeConfirmKillMonster()}>Cancel</Button>
+              </Col>
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            {/*<Button className="btn-lightning" onClick={() => this.closeConfirmKillMonster()}>Close</Button>*/}
+          </Modal.Footer>
+        </Modal>
+
       	<Grid>
+          <Row className="monster-health-row">
+            <Col xs={12} md={4}>
+              Default Scenario Level
+            </Col>
+            {scenarioLevelButtons}
+          </Row>
+          {this.state.game.monsterHealth.defaultScenarioLevel > -1 &&
+            <Row className="monster-health-row">
+              <Col xs={12} md={4}>
+                Num Characters Playing
+              </Col>
+                {numCharactersButtons}
+            </Row>
+          }
+          {this.state.game.monsterHealth.defaultScenarioLevel > -1 && this.state.game.monsterHealth.defaultNumPlaying > -1 &&
+            <Row className="monster-health-row">
+              <Col xs={12} md={4}>
+                Scenario
+              </Col>
+              <Col xs={12} md={4}>
+                <Button className="btn-scoundrel" block onClick={() => this.showScenarioChooser()}>Choose Scenario</Button>
+              </Col>
+              <Col xs={12} md={4}>
+                <Button className="btn-scoundrel" block onClick={() => this.showMonsterChooser()}>Choose Monster Types</Button>
+              </Col>
+            </Row>
+          }
+          {this.state.game.monsterHealth.scenario > -1 &&
+            <Row className="monster-health-row">
+              {monsterHeaderButtons}
+            </Row>
+          }
+          <Row className="monster-heath-monsters-container">
+            {displayedMonsterSections}
+          </Row>
+          <hr/>
           <Row className="monster-health-row">
             <Col xs={12} md={12}>
               <p><strong>How to use:</strong></p>
@@ -640,41 +818,6 @@ class MonsterHealthComponent extends Component {
                 <li>When a monster is dead, press the <strong>Kill Monster</strong> button to remove them from the active list</li>
               </ol>
             </Col>
-          </Row>
-          <Row className="monster-health-row">
-            <Col xs={12} md={4}>
-              Default Scenario Level
-            </Col>
-            {scenarioLevelButtons}
-          </Row>
-          {this.state.game.monsterHealth.defaultScenarioLevel > -1 &&
-            <Row className="monster-health-row">
-              <Col xs={12} md={4}>
-                Num Characters Playing
-              </Col>
-                {numCharactersButtons}
-            </Row>
-          }
-          {this.state.game.monsterHealth.defaultScenarioLevel > -1 && this.state.game.monsterHealth.defaultNumPlaying > -1 &&
-            <Row className="monster-health-row">
-              <Col xs={12} md={4}>
-                Scenario
-              </Col>
-              <Col xs={12} md={4}>
-                <input type="number" className="form-control" value={scenarioNumber} onChange={this.handleScenarioChange} placeholder="Enter scenario number" />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button className="btn-lightning" block onClick={this.scenarioGo}>Reset</Button>
-              </Col>
-            </Row>
-          }
-          {this.state.game.monsterHealth.scenario > -1 &&
-            <Row className="monster-health-row">
-              {monsterHeaderButtons}
-            </Row>
-          }
-          <Row className="monster-heath-monsters-container">
-            {displayedMonsterSections}
           </Row>
       	</Grid>
       </div>
