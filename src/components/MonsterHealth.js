@@ -252,6 +252,18 @@ class MonsterHealthComponent extends Component {
       displayedMonstersData = this.state.game.monsterHealth.monsters[this.state.displayMonsterType];
     }
 
+    // ensure that monsters are sorted alphabetically by name and then by their number
+    displayedMonstersData.sort(function(a, b) {
+      let aName = a.name.toLowerCase();
+      let bName = b.name.toLowerCase();
+
+      if (aName < bName) {return -1;}
+      if (aName > bName) {return 1;}
+      if (a.number < b.number) {return -1;}
+      if (a.number > b.number) {return 1;}
+      return 0;
+    });
+
     for (let i=0; i<displayedMonstersData.length; i++) {
       let monsterToDisplay = displayedMonstersData[i];
 
