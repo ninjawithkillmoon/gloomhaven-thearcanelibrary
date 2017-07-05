@@ -74,6 +74,10 @@ class MonsterHealthComponent extends Component {
       else {
         buttonClass = "btn-monster-normal";
       }
+
+      if (monsterToDisplay.summon) {
+        buttonClass += " btn-monster-summon";
+      }
     }
 
     buttonClass += " btn-monster";
@@ -92,9 +96,14 @@ class MonsterHealthComponent extends Component {
       );
     }
 
+    let buttonText = monsterToDisplay.name + ' ' + monsterToDisplay.number;
+    if (monsterToDisplay.summon && monsterToDisplay.alive) {
+      buttonText += '*';
+    }
+
     return (
       <Button block onClick={() => this.toggleMonster(monsterToDisplay)} className={buttonClass}>
-        {monsterToDisplay.name + ' ' + (monsterToDisplay.number)} {monsterStatusTokens}
+        {buttonText} {monsterStatusTokens}
       </Button>
     );
     
@@ -464,29 +473,46 @@ class MonsterHealthComponent extends Component {
     else {
       // if we're displaying only monsters of a particular type, then this button toggles between normal/elite/summon/dead
 
-      // regular monster: dead -> alive (normal) -> alive (elite) -> dead -> ...
-      // boss monster: dead -> alive (normal) -> dead -> ...
-      if (!monster.alive) {
-        // dead -> alive (normal)
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-      }
-      else if (monster.elite) {
-        // alive (elite) -> dead
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
-      }
-      else if (!monsterType.isBoss) {
-        // currently alive and normal
-        // alive (normal) -> alive (elite)
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
+      if (monsterType.isBoss) {
+        // boss monster: dead -> alive (normal) -> dead -> ...
+
+        if (!monster.alive) {
+          // dead -> alive (normal)
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
+        }
+        else {
+          // alive (normal) -> dead
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
+        }
       }
       else {
-        // currently alive and normal
-        // alive (normal) -> dead
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
-        gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+        // regular monster: dead -> alive (normal) -> alive (elite) -> alive (normal, summon) -> alive (elite, summon) -> dead -> ...
+
+        if (!monster.alive) {
+          // dead -> alive (normal)
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = true;
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+        }
+        else if (!monster.elite && !monster.summon) {
+          // alive (normal) -> alive (elite)
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
+        }
+        else if (monster.elite && !monster.summon) {
+          // alive (elite) -> alive (normal, summon)
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].summon = true;
+        }
+        else if (!monster.elite && monster.summon) {
+          // alive (normal, summon) -> alive (elite, summon)
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = true;
+        }
+        else {
+          // alive (elite, summon) -> dead
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].alive = false;
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].elite = false;
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].summon = false;
+          gameCopy.monsterHealth.monsters[monster.name][monsterIndex].damage = 0;
+        }
       }
     }
 
@@ -591,7 +617,7 @@ class MonsterHealthComponent extends Component {
                   To create monsters, press on the desired monster type
                   <ul>
                     <li>Each monster name has a number - this is the standee that it refers to</li>
-                    <li>Tapping on the monster name will toggle between dead/normal/elite</li>
+                    <li>Tapping on the monster name will toggle between dead/normal/elite and whether or not the monster is a summon (represented by an asterix: *)</li>
                     <li>The individual scenario level for each monster is displayed to the right of the name (you can tap this to change it per monster)</li>
                     <li>Starting health will be the monster's health according to their level</li>
                   </ul>
