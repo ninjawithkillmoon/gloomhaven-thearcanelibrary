@@ -3,6 +3,18 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
   {
+    versionNumber: "1.3",
+    items: [
+      "added solo scenarios",
+      "monster status tokens can now be tracked in the monster health tracker",
+      "updated scenario select for monster health tracker to chooser instead of number input",
+      "added ability to select individual monster types for monster health tracker",
+      "can now designate monsters as summons/spawns for tracking loot drops",
+      "better monster sorting on monster health tracker"
+    ],
+    date: "2017/07/07"
+  },
+  {
     versionNumber: "1.2",
     items: [
       "added Kickstarter scenarios",

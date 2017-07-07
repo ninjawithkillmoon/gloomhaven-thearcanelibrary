@@ -907,7 +907,7 @@ class MonsterHealthComponent extends Component {
               <p><strong>How to use:</strong></p>
               <ol>
                 <li>Select scenario level and number of characters</li>
-                <li>Choose a scenario using the button provided</li>
+                <li>Choose a scenario using the button provided or select particular monsters for random scenarios</li>
                 <li>
                   To create monsters, press on the desired monster type
                   <ul>
