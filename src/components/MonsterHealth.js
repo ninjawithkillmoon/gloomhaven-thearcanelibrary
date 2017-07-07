@@ -252,21 +252,23 @@ class MonsterHealthComponent extends Component {
     }
 
     // ensure that monsters are sorted alphabetically by name and then by their number
-    displayedMonstersData.sort(function(a, b) {
-      let aName = a.name.toLowerCase();
-      let bName = b.name.toLowerCase();
+    if (displayedMonstersData) {
+      displayedMonstersData.sort(function(a, b) {
+        let aName = a.name.toLowerCase();
+        let bName = b.name.toLowerCase();
 
-      if (aName < bName) {return -1;}
-      if (aName > bName) {return 1;}
-      if (a.number < b.number) {return -1;}
-      if (a.number > b.number) {return 1;}
-      return 0;
-    });
+        if (aName < bName) {return -1;}
+        if (aName > bName) {return 1;}
+        if (a.number < b.number) {return -1;}
+        if (a.number > b.number) {return 1;}
+        return 0;
+      });
 
-    for (let i=0; i<displayedMonstersData.length; i++) {
-      let monsterToDisplay = displayedMonstersData[i];
+      for (let i=0; i<displayedMonstersData.length; i++) {
+        let monsterToDisplay = displayedMonstersData[i];
 
-      displayedMonstersHTML.push(this.makeDisplayedMonsterSection(monsterToDisplay));
+        displayedMonstersHTML.push(this.makeDisplayedMonsterSection(monsterToDisplay));
+      }
     }
 
     return displayedMonstersHTML;
@@ -645,6 +647,85 @@ class MonsterHealthComponent extends Component {
     );
   }
 
+  makeMonsterChooserButtons() {
+    let buttons = [];
+
+    for (let monsterName in MONSTER_STATS.MONSTERS.monsters) {
+      if (MONSTER_STATS.MONSTERS.monsters.hasOwnProperty(monsterName)) {
+        buttons.push(this.makeMonsterChooserButton(monsterName));
+      }
+    }
+
+    buttons.sort(function(a, b) {
+      let aKey = a.key.toLowerCase();
+      let bKey = b.key.toLowerCase();
+
+      if (aKey < bKey) {return -1;}
+      if (aKey > bKey) {return 1;}
+      return 0;
+    });
+
+    return buttons;
+  }
+
+  makeMonsterChooserButton(monsterName) {
+    // is this monster already selected?
+    let selected = this.state.game.monsterHealth.monsters[monsterName];
+
+    let buttonClass = "btn-scenario-chooser";
+    if (selected) {
+      buttonClass += " btn-doomstalker";
+    }
+
+    return(
+      <Col key={monsterName} xs={6}>
+        <Button block className={buttonClass} onClick={() => this.toggleChooseMonster(monsterName)}>{monsterName}</Button>  
+      </Col>
+    );
+  }
+
+  toggleChooseMonster(monsterName) {
+    let gameCopy = this.state.game;
+
+    // find the monsters stats in the data structure
+    let monsterType = this.getMonsterType(monsterName);
+
+    if (gameCopy.monsterHealth.monsters[monsterName]) {
+      // we already have this monster - remove it
+      
+      delete gameCopy.monsterHealth.monsters[monsterName];
+    }
+    else {
+      // add this monster to the available types
+
+      let monsters = [];
+
+      for (let j=0; j<monsterType.standeeCount; j++) {
+        // add a monster record to the data structure
+        monsters.push({
+          name: monsterName,
+          number: j + 1,
+          elite: false,
+          level: gameCopy.monsterHealth.defaultScenarioLevel,
+          alive: false,
+          damage: 0,
+          statusTokens: []
+        });
+      }
+
+      gameCopy.monsterHealth.monsters[monsterName] = monsters;
+    }
+
+    // just clear the scenario since we're no longer sticking with the predefined monsters
+    gameCopy.monsterHealth.scenario = -1;
+
+    this.setState({
+      game: gameCopy
+    }, function() {
+      GameActions.changeGame(this.state.game);
+    });
+  }
+
   chooseScenario(scenarioNumber) {
     let gameCopy = this.state.game;
     gameCopy.monsterHealth.scenario = scenarioNumber;
@@ -653,6 +734,14 @@ class MonsterHealthComponent extends Component {
     this.scenarioGo();
 
     this.closeScenarioChooser();
+  }
+
+  isMonstersChosen() {
+    for (let monster in this.state.game.monsterHealth.monsters) {
+      if (this.state.game.monsterHealth.monsters.hasOwnProperty(monster)) {
+        return true;
+      }
+    }
   }
 
   render() {
@@ -685,6 +774,8 @@ class MonsterHealthComponent extends Component {
     let scenarioChooserButtons = this.makeScenarioChooserButtons();
     let kickstarterScenarioChooserButtons = this.makeKickstarterScenarioChooserButtons();
     let soloScenarioChooserButtons = this.makeSoloScenarioChooserButtons();
+
+    let monsterChooserButtons = this.makeMonsterChooserButtons();
 
     return (
       <div className="container">
@@ -736,7 +827,13 @@ class MonsterHealthComponent extends Component {
           </Modal.Header>
           <Modal.Body>
             <Row>
-              Coming soon...
+              <Col xs={12}>
+                <span>Warning: unselecting any monster type will wipe all unsaved existing monster health data for that monster.</span>
+              </Col>
+            </Row>
+            <hr/>
+            <Row>
+              {monsterChooserButtons}
             </Row>
           </Modal.Body>
           <Modal.Footer>
@@ -796,7 +893,7 @@ class MonsterHealthComponent extends Component {
               </Col>
             </Row>
           }
-          {this.state.game.monsterHealth.scenario > -1 &&
+          {(this.state.game.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
             <Row className="monster-health-row">
               {monsterHeaderButtons}
             </Row>
