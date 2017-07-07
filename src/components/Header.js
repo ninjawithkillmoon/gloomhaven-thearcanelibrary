@@ -62,7 +62,7 @@ class HeaderComponent extends Component {
             </li>
           </ul>
           <div className="navbar-btn">
-            <FileReaderInput className="load-game-file-input" as="text" id="my-file-input" onChange={this.loadGame}>
+            <FileReaderInput className="load-game-file-input" as="text" id="my-file-input" onChange={(e, results) => this.loadGame(e, results)}>
               <Button className="btn-brute"><Glyphicon glyph="cloud-download" /> Load</Button>
             </FileReaderInput>
             <Button className="btn-scoundrel" onClick={this.saveGame.bind(this)}><Glyphicon glyph="cloud-upload" /> Save</Button>
