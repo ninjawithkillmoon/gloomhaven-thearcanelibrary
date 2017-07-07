@@ -290,6 +290,15 @@ class MonsterHealthComponent extends Component {
       monsterNames.push(scenarioDetails.decks[i].name);
     }
 
+    monsterNames.sort(function(a, b) {
+      let aName = a.toLowerCase();
+      let bName = b.toLowerCase();
+
+      if (aName < bName) {return -1;}
+      if (aName > bName) {return 1;}
+      return 0;
+    });
+
     for (let i=0; i<monsterNames.length; i++) {
       let monsterName = monsterNames[i];
 
