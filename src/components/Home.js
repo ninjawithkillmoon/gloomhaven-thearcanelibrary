@@ -3,6 +3,14 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
   {
+    versionNumber: "1.5",
+    items: [
+      "many more monster health tracker updates, implementing new ways to apply and remove status tokens",
+      "fixed some menu issues by consolidating top level items"
+    ],
+    date: "2017/07/11"
+  },
+  {
     versionNumber: "1.4",
     items: [
       "implemented new Dropbox load and save functionality",

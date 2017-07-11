@@ -1130,7 +1130,7 @@ class MonsterHealthComponent extends Component {
                   The toggle buttons below the monster healt indicators allow you to apply and remove status effects from monsters in a different way. Toggle on one of the buttons and then press any of the monster buttons to apply the effect.
                   <ul>
                     <li><b>Unselect All</b> will toggle off all of the buttons</li>
-                    <li><b>End Monster Round</b> will remove all but the poison and would status effects from selected monsters</li>
+                    <li><b>End Monster Round</b> will remove all but the poison and would status effects from selected monsters (<b>CAUTION:</b> effects applied during a monsters turn (usually strengthen or invisibility) should not be removed this way - see game rules if unsure)</li>
                     <li><b>Clear All Status Effects</b> will remove all status effects from selected monsters</li>
                     <li><b>Heal X</b> will apply a healing effect to selected monsters, removing poison and wound and healing damage if applicable (the buttons to the right of this toggle button change the magnitude of the heal)</li>
                   </ul>
