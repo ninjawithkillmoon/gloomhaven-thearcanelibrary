@@ -16,7 +16,12 @@ class MonsterHealthComponent extends Component {
     this.state = {
       game: GameStore.getGame(),
       displayMonsterType: "ACTIVE",
-      statusTokenPopup: ""
+      statusTokenPopup: "",
+      statusTokensEnabled: [],
+      healAmount: 2,
+      endMonsterRoundToggled: false,
+      healToggled: false,
+      clearAllStatusEffectsToggled: false
     } 
 
     this.onChange = this.onChange.bind(this);
@@ -371,7 +376,7 @@ class MonsterHealthComponent extends Component {
 
   createNumCharactersButton(value, activeValue) {
     return (
-      <Col xs={1} md={1} key={value}>
+      <Col xs={3} key={value}>
         <Button onClick={() => this.numCharactersButtonClick(value)} className={activeValue === value ? "btn-doomstalker" : ""} block>{value}</Button>
       </Col>
     );
@@ -417,6 +422,38 @@ class MonsterHealthComponent extends Component {
     this.updateGame(gameCopy);
   }
 
+  healMonster(monster) {
+    let gameCopy = this.state.game;
+
+    let monsterIndex = monster.number - 1;
+
+    let poisonIndex = monster.statusTokens.indexOf("statusEffectPoison");
+
+    let healDamage = true;
+    if (poisonIndex > -1) {
+      // poison blocks heal
+      healDamage = false;
+
+      // remove poison
+      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens.splice(poisonIndex, 1);
+    }
+
+    let woundIndex = monster.statusTokens.indexOf("statusEffectWound");
+
+    if (woundIndex > -1) {
+      // remove wound
+      gameCopy.monsterHealth.monsters[monster.name][monsterIndex].statusTokens.splice(woundIndex, 1);
+    }
+
+    this.setState({
+      game: gameCopy
+    }, function() {
+      if (healDamage) {
+        this.changeMonsterDamage(monster, -this.state.healAmount);
+      }
+    });
+  }
+
   changeMonsterDamage(monster, damageAmount) {
     let gameCopy = this.state.game;
     
@@ -452,9 +489,43 @@ class MonsterHealthComponent extends Component {
     }
   }
 
-  toggleStatusToken(statusToken, monster) {
-    let gameCopy = this.state.game;
+  clearStatusEffectToggles() {
+    this.setState({
+      statusTokensEnabled: [],
+      healToggled: false,
+      endMonsterRoundToggled: false,
+      clearAllStatusEffectsToggled: false
+    });
+  }
 
+  toggleStatusEffect(statusEffect) {
+    let enabled = this.state.statusTokensEnabled;
+    let tokenIndex = enabled.indexOf(statusEffect);
+
+    if (tokenIndex > -1) {
+      // turn it off
+      enabled.splice(tokenIndex, 1);
+    }
+    else {
+      // turn it on
+      enabled.push(statusEffect);
+    }
+
+    this.setState({
+      statusTokensEnabled: enabled,
+      healToggled: false,
+      endMonsterRoundToggled: false,
+      clearAllStatusEffectsToggled: false
+    });
+  }
+
+  clearAllStatusEffectsForMonster(monster) {
+    monster.statusTokens = [];
+
+    this.updateGame(this.state.game);
+  }
+
+  toggleStatusToken(statusToken, monster) {
     // for backwards compatibility
     if (!monster.statusTokens) {
       monster.statusTokens = [];
@@ -470,7 +541,26 @@ class MonsterHealthComponent extends Component {
       monster.statusTokens.push(statusToken);
     }
 
-    this.updateGame(gameCopy);
+    this.updateGame(this.state.game);
+  }
+
+  endRoundForMonster(monster) {
+    let poisoned = monster.statusTokens.indexOf("statusEffectPoison") > -1;
+    let wounded = monster.statusTokens.indexOf("statusEffectWound") > -1;
+
+    // remove everything except poison and wound
+
+    monster.statusTokens = [];
+
+    if (poisoned) {
+      monster.statusTokens.push("statusEffectPoison");
+    }
+
+    if (wounded) {
+      monster.statusTokens.push("statusEffectWound");
+    }
+
+    this.updateGame(this.state.game);
   }
 
   toggleMonster(monster) {
@@ -480,10 +570,33 @@ class MonsterHealthComponent extends Component {
     let monsterIndex = monster.number - 1;
 
     if (this.isDisplayActiveOnly()) {
-      // if we're display all active monsters, then this button displays the status tokens popup
-      this.setState({
-        statusTokenPopup: monster
-      });
+      // we're display all active monsters
+
+      if (this.state.statusTokensEnabled.length > 0) {
+        // toggle the selected status effects for this particular monster
+        for (let i=0; i<this.state.statusTokensEnabled.length; i++) {
+          let effect = this.state.statusTokensEnabled[i];
+
+          this.toggleStatusToken(effect, monster);
+        }
+      }
+      else if (this.state.healToggled) {
+        this.healMonster(monster);
+      }
+      else if (this.state.endMonsterRoundToggled) {
+        this.endRoundForMonster(monster);
+      }
+      else if (this.state.clearAllStatusEffectsToggled) {
+        this.clearAllStatusEffectsForMonster(monster);
+      }
+      else {
+        // show the popup for status effects
+        this.setState({
+          statusTokenPopup: monster
+        });
+      }
+
+      return; // don't carry on and update game state in this method - it was already done in one of the methods called
     }
     else {
       // if we're displaying only monsters of a particular type, then this button toggles between normal/elite/summon/dead
@@ -563,6 +676,26 @@ class MonsterHealthComponent extends Component {
       buttons.push(
         <Col key={i} xs={4} md={3}>
           <Button block onClick={() => this.toggleStatusToken(statusToken, this.state.statusTokenPopup)} className={this.state.statusTokenPopup.statusTokens && this.state.statusTokenPopup.statusTokens.indexOf(statusToken) >= 0 ? "btn-doomstalker" : ""}>
+            <GloomhavenIcon icon={statusToken} width={iconWidth} />
+          </Button>
+        </Col>
+      );
+    }
+
+    return buttons;
+  }
+
+  makeStatusEffectToggles() {
+    let buttons = [];
+
+    let statusTokens = ["statusEffectStun", "statusEffectDisarm", "statusEffectImmobilize", "statusEffectPoison", "statusEffectWound", "statusEffectMuddle", "statusEffectStrengthen", "statusEffectInvisible"];
+
+    for (let i=0; i< statusTokens.length; i++) {
+      let statusToken = statusTokens[i];
+
+      buttons.push(
+        <Col key={i} xs={3} md={1}>
+          <Button block onClick={() => this.toggleStatusEffect(statusToken)} className={this.state.statusTokensEnabled && this.state.statusTokensEnabled.indexOf(statusToken) >= 0 ? "btn-doomstalker" : ""}>
             <GloomhavenIcon icon={statusToken} width={iconWidth} />
           </Button>
         </Col>
@@ -744,6 +877,51 @@ class MonsterHealthComponent extends Component {
     }
   }
 
+  toggleHealChange(change) {
+    let newAmount = this.state.healAmount + change;
+    
+    if (newAmount <= 0) {
+      newAmount = 1;
+    }
+
+    this.setState({
+      healAmount: newAmount
+    });
+  }
+
+  toggleHeal() {
+    let healToggled = !this.state.healToggled;
+
+    this.setState({
+      healToggled: healToggled,
+      endMonsterRoundToggled: false,
+      clearAllStatusEffectsToggled: false,
+      statusTokensEnabled: []
+    });
+  }
+
+  toggleClearAllStatusEffects() {
+    let clearAllStatusEffectsToggled = !this.state.clearAllStatusEffectsToggled;
+
+    this.setState({
+      healToggled: false,
+      endMonsterRoundToggled: false,
+      clearAllStatusEffectsToggled: clearAllStatusEffectsToggled,
+      statusTokensEnabled: []
+    });
+  }
+
+  toggleEndOfMonsterRound() {
+    let endMonsterRoundToggled = !this.state.endMonsterRoundToggled;
+
+    this.setState({
+      healToggled: false,
+      endMonsterRoundToggled: endMonsterRoundToggled,
+      clearAllStatusEffectsToggled: false,
+      statusTokensEnabled: []
+    });
+  }
+
   render() {
     let scenarioLevelButtons = [];
 
@@ -777,8 +955,10 @@ class MonsterHealthComponent extends Component {
 
     let monsterChooserButtons = this.makeMonsterChooserButtons();
 
+    let statusEffectToggles = this.makeStatusEffectToggles();
+
     return (
-      <div className="container">
+      <div className="container monster-health-container">
         <Modal id="modal" show={this.state.statusTokenPopup !== ""} onHide={() => this.closeStatusTokenPopup()}>
           <Modal.Header closeButton>
             <Modal.Title>Status Effects for {this.state.statusTokenPopup.name} {this.state.statusTokenPopup.number}</Modal.Title>
@@ -867,29 +1047,30 @@ class MonsterHealthComponent extends Component {
 
       	<Grid>
           <Row className="monster-health-row">
-            <Col xs={12} md={4}>
-              Default Scenario Level
+            <Col xs={12} md={7}>
+              <Row>
+                <Col xs={2}>
+                  <div className="text-middle-button">Level</div>
+                </Col>
+                {scenarioLevelButtons}
+              </Row>
             </Col>
-            {scenarioLevelButtons}
-          </Row>
-          {this.state.game.monsterHealth.defaultScenarioLevel > -1 &&
-            <Row className="monster-health-row">
-              <Col xs={12} md={4}>
-                Num Characters Playing
-              </Col>
+            <Col xs={12} md={5}>
+              <Row>
+                <Col xs={2}>
+                  <div className="text-middle-button">Chars</div>
+                </Col>
                 {numCharactersButtons}
-            </Row>
-          }
+              </Row>
+            </Col>
+          </Row>
           {this.state.game.monsterHealth.defaultScenarioLevel > -1 && this.state.game.monsterHealth.defaultNumPlaying > -1 &&
             <Row className="monster-health-row">
-              <Col xs={12} md={4}>
-                Scenario
+              <Col xs={6} md={6}>
+                <Button className="btn-scoundrel" block onClick={() => this.showScenarioChooser()}>Scenario</Button>
               </Col>
-              <Col xs={12} md={4}>
-                <Button className="btn-scoundrel" block onClick={() => this.showScenarioChooser()}>Choose Scenario</Button>
-              </Col>
-              <Col xs={12} md={4}>
-                <Button className="btn-scoundrel" block onClick={() => this.showMonsterChooser()}>Choose Monster Types</Button>
+              <Col xs={6} md={6}>
+                <Button className="btn-scoundrel" block onClick={() => this.showMonsterChooser()}>Monster Types</Button>
               </Col>
             </Row>
           }
@@ -902,9 +1083,33 @@ class MonsterHealthComponent extends Component {
             {displayedMonsterSections}
           </Row>
           <hr/>
+          {(this.state.game.monsterHealth.scenario > -1 || this.isMonstersChosen()) &&
+            <Row className="status-token-buttons">
+              <Col xs={12} md={4}>
+                <Button block onClick={() => this.clearStatusEffectToggles()}>Unselect All</Button>
+              </Col>
+              {statusEffectToggles}
+              <Col xs={12} md={4}>
+                <Button block className={this.state.endMonsterRoundToggled ? "btn-doomstalker" : ""} onClick={() => this.toggleEndOfMonsterRound()}>End Monster Round</Button>
+              </Col>
+              <Col xs={12} md={4}>
+                <Button block className={this.state.clearAllStatusEffectsToggled ? "btn-doomstalker" : ""} onClick={() => this.toggleClearAllStatusEffects()}>Clear All Status Effects</Button>
+              </Col>
+              <Col xs={6} md={2}>
+                <Button block className={this.state.healToggled ? "btn-doomstalker" : ""} onClick={() => this.toggleHeal()}>Heal {this.state.healAmount}</Button>
+              </Col>
+              <Col xs={3} md={1}>
+                <Button block className="btn-doomstalker" onClick={() => this.toggleHealChange(-1)}>-</Button>
+              </Col>
+              <Col xs={3} md={1}>
+                <Button block className="btn-brute" onClick={() => this.toggleHealChange(1)}>+</Button>
+              </Col>
+            </Row>
+          }
+          <hr/>
           <Row className="monster-health-row">
             <Col xs={12} md={12}>
-              <p><strong>How to use:</strong></p>
+              <p><strong>Instructions:</strong></p>
               <ol>
                 <li>Select scenario level and number of characters</li>
                 <li>Choose a scenario using the button provided or select particular monsters for random scenarios</li>
@@ -921,6 +1126,15 @@ class MonsterHealthComponent extends Component {
                 <li>The blue buttons control the monsters remaining health</li>
                 <li>When viewing <strong>All Active monsters</strong>, pressing the monsters name will allow you to toggle the <strong>status effects</strong> applied to that monster</li>
                 <li>When a monster is dead, press the <strong>Kill Monster</strong> button to remove them from the active list</li>
+                <li>
+                  The toggle buttons below the monster healt indicators allow you to apply and remove status effects from monsters in a different way. Toggle on one of the buttons and then press any of the monster buttons to apply the effect.
+                  <ul>
+                    <li><b>Unselect All</b> will toggle off all of the buttons</li>
+                    <li><b>End Monster Round</b> will remove all but the poison and would status effects from selected monsters</li>
+                    <li><b>Clear All Status Effects</b> will remove all status effects from selected monsters</li>
+                    <li><b>Heal X</b> will apply a healing effect to selected monsters, removing poison and wound and healing damage if applicable (the buttons to the right of this toggle button change the magnitude of the heal)</li>
+                  </ul>
+                </li>
               </ol>
             </Col>
           </Row>
