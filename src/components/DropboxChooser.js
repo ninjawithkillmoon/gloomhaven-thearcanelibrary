@@ -23,15 +23,8 @@ class DropboxChooserComponent extends Component {
       // read the response body as text
       response.json()
         .then(function(data) {
-          // quick check that the text content is actually a save game
-          if (data.name && data.partyNotes) {
-            // load the game into the browser
-            GameActions.loadGame(data);
-          }
-          else {
-            // show an error message indicating that this is not the content that we expected
-            throw new Error("missing data");
-          }
+          // load the game into the browser
+          GameActions.loadGame(data);
         })
         .catch(function(error) {
           ErrorActions.showError(error, "Failed to parse file. Please check it is formatted correctly and try again.");
