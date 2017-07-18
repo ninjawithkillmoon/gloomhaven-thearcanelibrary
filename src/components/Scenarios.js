@@ -1042,7 +1042,7 @@ class ScenariosComponent extends Component {
             <Col xs={12}>
               <p>You can track your campaign's progress of <strong>unlocking and completing</strong> scenarios with the buttons below.</p>
               <p>Each button has a number that corresponds to a scenario in the scenario book. Selecting a scenario button will reveal its name and mark it as <strong>unlocked</strong>. You can do this when you place a sticker on the map.</p>
-              <p>Selecting a scneario that has been unlocked will change its status to <strong>completed</strong>.</p>
+              <p>Selecting a scenario that has been unlocked will change its status to <strong>completed</strong>.</p>
               <p>Both the <strong>party achievements</strong> and <strong>global achievements</strong> that you have marked as gained and lost in the app will determine whether you are eligible to do a scenario in campaign mode. The status of a scenario will <strong>update automatically</strong> as you gain and lose party and global achievements.</p>
               <p>Please note that the achievement requirements should be up to date for the <strong>second printing</strong> of Gloomhaven, because there were a number of loopholes closed. Please see the <strong>Scenario book</strong> and <strong>Sticker sheets</strong> section of <a href="https://boardgamegeek.com/thread/1761512/official-second-printing-change-log">Official Second Printing Change Log</a> for further details if you own the original printing.</p>
               <p>The <strong>Kickstarer scenarios</strong> start with <strong>K</strong> (eg. K9). The <strong>solo scenarios</strong> start with <strong>S</strong> (eg. S11) and are in the order presented in the solo scenario book.</p>
