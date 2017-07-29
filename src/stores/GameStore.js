@@ -6,7 +6,7 @@ const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
 // default object avoids null issues throughout app before a game is loaded
-let _game = {
+let _game = Object.assign({}, {
   "name": "",
   "prosperity": 0,
   "donations": 0,
@@ -24,10 +24,27 @@ let _game = {
     "scenario": -1,
     "monsters": []
   }
-};
+}, getGameLocalStorage());
 
 function setGame(game) {
+  setGameLocalStorage(game);
   _game = game;
+}
+
+function getGameLocalStorage() {
+  try {
+    return JSON.parse(window.localStorage.getItem('game'));
+  }
+  catch (e) {
+    return { };
+  }
+}
+
+function setGameLocalStorage(game) {
+  try {
+    window.localStorage.setItem('game', JSON.stringify(game));
+  }
+  catch (e) { }
 }
 
 function changeProsperity(amount) {
@@ -45,7 +62,7 @@ function changeProsperity(amount) {
 }
 
 function changeGame(game) {
-  _game = game;
+  setGame(game);
 }
 
 class GameStoreClass extends EventEmitter {
