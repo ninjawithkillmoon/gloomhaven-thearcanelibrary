@@ -6,7 +6,7 @@ const CHANGE_GAME_EVENT = "changeGame";
 const MAX_PROSPERITY = 64;
 
 // default object avoids null issues throughout app before a game is loaded
-let _game = Object.assign({}, {
+let _game = Object.assign({
   "name": "",
   "prosperity": 0,
   "donations": 0,
