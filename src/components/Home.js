@@ -3,6 +3,13 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 const versionHistory = [
   {
+    versionNumber: "1.6",
+    items: [
+      "local browser storage - your game will automatically return to the previous point when used in the same web browser",
+    ],
+    date: "2017/10/25"
+  },
+  {
     versionNumber: "1.5",
     items: [
       "many more monster health tracker updates, implementing new ways to apply and remove status tokens",
