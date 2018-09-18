@@ -214,7 +214,7 @@ export const SCENARIOS = [
   { 
     title: "Scorched Summit",
     globalAchievementsRequired: [],
-    globalAchievementsRequiredIncomplete: [],
+    globalAchievementsRequiredIncomplete: [ACHIEVEMENTS.GLOBAL_ACHIEVEMENTS.THE_DRAKE_AIDED],
     partyAchievementsRequired: [PARTY.PARTY_ACHIEVEMENTS.THE_DRAKES_COMMAND] 
   },
   { 
